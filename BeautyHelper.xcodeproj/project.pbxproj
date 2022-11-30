@@ -9,21 +9,45 @@
 /* Begin PBXBuildFile section */
 		EC8D2475292BEA6D009F1C30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D2474292BEA6D009F1C30 /* AppDelegate.swift */; };
 		EC8D2477292BEA6D009F1C30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D2476292BEA6D009F1C30 /* SceneDelegate.swift */; };
-		EC8D2479292BEA6D009F1C30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D2478292BEA6D009F1C30 /* ViewController.swift */; };
-		EC8D247C292BEA6D009F1C30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8D247A292BEA6D009F1C30 /* Main.storyboard */; };
+		EC8D2479292BEA6D009F1C30 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D2478292BEA6D009F1C30 /* MainTabBarController.swift */; };
 		EC8D247E292BEA6D009F1C30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC8D247D292BEA6D009F1C30 /* Assets.xcassets */; };
 		EC8D2481292BEA6D009F1C30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8D247F292BEA6D009F1C30 /* LaunchScreen.storyboard */; };
+		EC8D248E292BED64009F1C30 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D248D292BED64009F1C30 /* UIColor + Extension.swift */; };
+		EC8D2490292BEDB8009F1C30 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D248F292BEDB8009F1C30 /* ScannerViewController.swift */; };
+		EC8D2492292BEDEC009F1C30 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D2491292BEDEC009F1C30 /* SearchViewController.swift */; };
+		EC8D2494292BEE12009F1C30 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D2493292BEE12009F1C30 /* FavoritesViewController.swift */; };
+		EC8E96B5292E999E00789CDC /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8E96B4292E999E00789CDC /* ImagePicker.swift */; };
+		EC972668293534EB0034B6D2 /* ProductIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC972667293534EB0034B6D2 /* ProductIngredientsViewController.swift */; };
+		EC97266A2935371B0034B6D2 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9726692935371B0034B6D2 /* IngredientTableViewCell.swift */; };
+		EC97266C293537EE0034B6D2 /* UITableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC97266B293537EE0034B6D2 /* UITableView + Extension.swift */; };
+		EC986DE52937D8A000F24F56 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC986DE42937D8A000F24F56 /* UIView + Extension.swift */; };
+		EC9B0E0B292FDD57002DF9F0 /* UIScreen + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B0E0A292FDD57002DF9F0 /* UIScreen + Extension.swift */; };
+		EC9B0E0E292FE3E4002DF9F0 /* IngredientsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B0E0D292FE3E4002DF9F0 /* IngredientsModel.swift */; };
+		EC9B0E13292FED35002DF9F0 /* ingredients.json in Resources */ = {isa = PBXBuildFile; fileRef = EC9B0E12292FED35002DF9F0 /* ingredients.json */; };
+		ECC479FC293677AD00A0155F /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC479FB293677AD00A0155F /* String + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EC8D2471292BEA6D009F1C30 /* BeautyHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeautyHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8D2474292BEA6D009F1C30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC8D2476292BEA6D009F1C30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EC8D2478292BEA6D009F1C30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EC8D247B292BEA6D009F1C30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EC8D2478292BEA6D009F1C30 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		EC8D247D292BEA6D009F1C30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC8D2480292BEA6D009F1C30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC8D2482292BEA6D009F1C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC8D248D292BED64009F1C30 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		EC8D248F292BEDB8009F1C30 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		EC8D2491292BEDEC009F1C30 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		EC8D2493292BEE12009F1C30 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		EC8E96B4292E999E00789CDC /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		EC972667293534EB0034B6D2 /* ProductIngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductIngredientsViewController.swift; sourceTree = "<group>"; };
+		EC9726692935371B0034B6D2 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
+		EC97266B293537EE0034B6D2 /* UITableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extension.swift"; sourceTree = "<group>"; };
+		EC986DE42937D8A000F24F56 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
+		EC9B0E0A292FDD57002DF9F0 /* UIScreen + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen + Extension.swift"; sourceTree = "<group>"; };
+		EC9B0E0D292FE3E4002DF9F0 /* IngredientsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsModel.swift; sourceTree = "<group>"; };
+		EC9B0E12292FED35002DF9F0 /* ingredients.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ingredients.json; sourceTree = "<group>"; };
+		ECC479FB293677AD00A0155F /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +80,83 @@
 		EC8D2473292BEA6D009F1C30 /* BeautyHelper */ = {
 			isa = PBXGroup;
 			children = (
+				EC9B0E12292FED35002DF9F0 /* ingredients.json */,
+				EC8D2488292BEC71009F1C30 /* Application */,
+				EC9B0E0C292FE3C9002DF9F0 /* Models */,
+				EC8E96B6292E99F300789CDC /* Views */,
+				EC8D2489292BEC7F009F1C30 /* ViewControllers */,
+				EC8D248B292BED28009F1C30 /* Extensions */,
+				EC8D248A292BECBE009F1C30 /* Resources */,
+			);
+			path = BeautyHelper;
+			sourceTree = "<group>";
+		};
+		EC8D2488292BEC71009F1C30 /* Application */ = {
+			isa = PBXGroup;
+			children = (
 				EC8D2474292BEA6D009F1C30 /* AppDelegate.swift */,
 				EC8D2476292BEA6D009F1C30 /* SceneDelegate.swift */,
-				EC8D2478292BEA6D009F1C30 /* ViewController.swift */,
-				EC8D247A292BEA6D009F1C30 /* Main.storyboard */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		EC8D2489292BEC7F009F1C30 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EC8D2478292BEA6D009F1C30 /* MainTabBarController.swift */,
+				EC8D248F292BEDB8009F1C30 /* ScannerViewController.swift */,
+				EC972667293534EB0034B6D2 /* ProductIngredientsViewController.swift */,
+				EC8D2491292BEDEC009F1C30 /* SearchViewController.swift */,
+				EC8D2493292BEE12009F1C30 /* FavoritesViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		EC8D248A292BECBE009F1C30 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				EC8D247D292BEA6D009F1C30 /* Assets.xcassets */,
 				EC8D247F292BEA6D009F1C30 /* LaunchScreen.storyboard */,
 				EC8D2482292BEA6D009F1C30 /* Info.plist */,
 			);
-			path = BeautyHelper;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EC8D248B292BED28009F1C30 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EC8D248C292BED4F009F1C30 /* UIKit */,
+				ECC479FB293677AD00A0155F /* String + Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EC8D248C292BED4F009F1C30 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				EC8D248D292BED64009F1C30 /* UIColor + Extension.swift */,
+				EC9B0E0A292FDD57002DF9F0 /* UIScreen + Extension.swift */,
+				EC97266B293537EE0034B6D2 /* UITableView + Extension.swift */,
+				EC986DE42937D8A000F24F56 /* UIView + Extension.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		EC8E96B6292E99F300789CDC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EC8E96B4292E999E00789CDC /* ImagePicker.swift */,
+				EC9726692935371B0034B6D2 /* IngredientTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EC9B0E0C292FE3C9002DF9F0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EC9B0E0D292FE3E4002DF9F0 /* IngredientsModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,8 +218,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC8D2481292BEA6D009F1C30 /* LaunchScreen.storyboard in Resources */,
+				EC9B0E13292FED35002DF9F0 /* ingredients.json in Resources */,
 				EC8D247E292BEA6D009F1C30 /* Assets.xcassets in Resources */,
-				EC8D247C292BEA6D009F1C30 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +230,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC8D2479292BEA6D009F1C30 /* ViewController.swift in Sources */,
+				EC8D2492292BEDEC009F1C30 /* SearchViewController.swift in Sources */,
+				EC9B0E0B292FDD57002DF9F0 /* UIScreen + Extension.swift in Sources */,
+				EC8D2479292BEA6D009F1C30 /* MainTabBarController.swift in Sources */,
+				EC8D2494292BEE12009F1C30 /* FavoritesViewController.swift in Sources */,
+				EC9B0E0E292FE3E4002DF9F0 /* IngredientsModel.swift in Sources */,
+				EC97266C293537EE0034B6D2 /* UITableView + Extension.swift in Sources */,
+				EC8D248E292BED64009F1C30 /* UIColor + Extension.swift in Sources */,
+				EC972668293534EB0034B6D2 /* ProductIngredientsViewController.swift in Sources */,
+				EC986DE52937D8A000F24F56 /* UIView + Extension.swift in Sources */,
 				EC8D2475292BEA6D009F1C30 /* AppDelegate.swift in Sources */,
+				ECC479FC293677AD00A0155F /* String + Extension.swift in Sources */,
+				EC97266A2935371B0034B6D2 /* IngredientTableViewCell.swift in Sources */,
+				EC8E96B5292E999E00789CDC /* ImagePicker.swift in Sources */,
+				EC8D2490292BEDB8009F1C30 /* ScannerViewController.swift in Sources */,
 				EC8D2477292BEA6D009F1C30 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +251,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EC8D247A292BEA6D009F1C30 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EC8D247B292BEA6D009F1C30 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EC8D247F292BEA6D009F1C30 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -289,12 +385,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DTN97VNT76;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BeautyHelper/Info.plist;
+				INFOPLIST_FILE = BeautyHelper/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,9 +397,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.maxhmelev.BeautyHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -317,12 +415,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DTN97VNT76;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BeautyHelper/Info.plist;
+				INFOPLIST_FILE = BeautyHelper/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,9 +427,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.maxhmelev.BeautyHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
