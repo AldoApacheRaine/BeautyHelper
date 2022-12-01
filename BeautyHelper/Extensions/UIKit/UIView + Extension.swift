@@ -16,4 +16,12 @@ extension UIView {
         layer.shadowOpacity = 0.7
         layer.shadowRadius = 1.0
     }
+    
+    func addShadowOnTextView() {
+        layer.shadowColor = UIColor.lightGray.cgColor
+        layer.masksToBounds = false
+        layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
+        layer.shadowOpacity = 0.7
+        layer.shadowRadius = 1.0
+    }
 }

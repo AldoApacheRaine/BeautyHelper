@@ -43,26 +43,27 @@ class ScannerViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var scannedTextView: UITextView = {
-       let textView = UITextView()
-        textView.textAlignment = .left
-        textView.font = .systemFont(ofSize: 18)
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        return textView
-    }()
+    private lazy var ingredientsTextView = IngredientsTextView()
+
+// Узнать про правильность использования кнопок такого вида!!!
+
+    private lazy var scanButton = CustomButton(title: "Сканировать", target: self, action: #selector(scanButtonTapped))
     
-    private lazy var scanButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = .specialButton
-        button.tintColor = .white
-        button.layer.cornerRadius = 10
-        button.setTitle("Сканировать", for: .normal)
-        button.titleLabel?.textAlignment = .center
-//        button.titleLabel?.font = .robotoBold16()
-        button.addTarget(self, action: #selector(scanButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    private lazy var analyzeButton = CustomButton(title: "Анализировать состав", target: self, action: #selector(analyzeButtonTapped))
+    
+    
+//    private lazy var scanButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.backgroundColor = .specialButton
+//        button.tintColor = .white
+//        button.layer.cornerRadius = 10
+//        button.setTitle("Сканировать", for: .normal)
+//        button.titleLabel?.textAlignment = .center
+////        button.titleLabel?.font = .robotoBold16()
+//        button.addTarget(self, action: #selector(scanButtonTapped), for: .touchUpInside)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        return button
+//    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +73,7 @@ class ScannerViewController: UIViewController {
         
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         scrollView.delegate = self
+
         setupViews()
         setupNavBar()
         setConstraints()
@@ -79,12 +81,12 @@ class ScannerViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .specialBackground
-        
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(logoImageView)
-        contentView.addSubview(scannedTextView)
+        contentView.addSubview(ingredientsTextView)
         contentView.addSubview(scanButton)
+        contentView.addSubview(analyzeButton)
     }
     
     private func setupNavBar() {
@@ -94,9 +96,15 @@ class ScannerViewController: UIViewController {
         self.navigationController?.view.backgroundColor = UIColor.clear
     }
     
+
+    
     @objc private func scanButtonTapped(_ sender: UIButton) {
-        
         self.imagePicker?.present(from: sender)
+    }
+    
+    @objc private func analyzeButtonTapped(_ sender: UIButton) {
+        print("Анализирую")
+        print(ingredientsTextView.text)
     }
     
     func loadJson() {
@@ -134,7 +142,7 @@ class ScannerViewController: UIViewController {
                 ingredientsVC.ingredients = self!.productIngredients
                 self?.navigationController?.pushViewController(ingredientsVC, animated: true)
                 
-                self?.scannedTextView.text = text.stringToComponents().joined(separator: ", ")
+                self?.ingredientsTextView.text = text.stringToComponents().joined(separator: ", ")
             }
         }
         do {
@@ -155,8 +163,6 @@ class ScannerViewController: UIViewController {
         }
         print(productIngredients)
     }
-    
-
 }
 
 // MARK: - ImagePickerDelegate
@@ -189,14 +195,22 @@ extension ScannerViewController {
         ])
         
         NSLayoutConstraint.activate([
-            scannedTextView.topAnchor.constraint(equalTo: scanButton.bottomAnchor, constant: 16),
-            scannedTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            scannedTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            scannedTextView.heightAnchor.constraint(equalToConstant: 200),
-//            scannedTextView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -8)
+            ingredientsTextView.topAnchor.constraint(equalTo: scanButton.bottomAnchor, constant: 16),
+            ingredientsTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            ingredientsTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            ingredientsTextView.heightAnchor.constraint(equalToConstant: 200),
+        ])
+        
+        NSLayoutConstraint.activate([
+            analyzeButton.topAnchor.constraint(equalTo: ingredientsTextView.bottomAnchor, constant: 16),
+            analyzeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            analyzeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            analyzeButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
+
+// MARK: - UIScrollViewDelegate
 
 extension ScannerViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -212,3 +226,4 @@ extension ScannerViewController: UIScrollViewDelegate {
         }
     }
 }
+

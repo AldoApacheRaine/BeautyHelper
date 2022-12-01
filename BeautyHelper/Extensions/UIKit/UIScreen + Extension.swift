@@ -5,6 +5,7 @@
 //  Created by Максим Хмелев on 24.11.2022.
 //
 
+// Расширение для маски камеры
 import UIKit
 
 extension UIScreen {

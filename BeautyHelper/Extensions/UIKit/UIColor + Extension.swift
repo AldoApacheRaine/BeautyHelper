@@ -13,6 +13,7 @@ extension UIColor {
     static let specialGrey = #colorLiteral(red: 0.3176470588, green: 0.3176470588, blue: 0.3137254902, alpha: 1)
     static let specialButton = #colorLiteral(red: 0.8705882353, green: 0.4901960784, blue: 0.5215686275, alpha: 1)
     static let specialGreen = #colorLiteral(red: 0.01840716042, green: 0.6410649419, blue: 0.6742145419, alpha: 1)
+    static let specialTextView = #colorLiteral(red: 0.9843137255, green: 0.9725490196, blue: 0.9764705882, alpha: 1)
     static let specialDarkGreen = #colorLiteral(red: 0.1411764706, green: 0.2941176471, blue: 0.262745098, alpha: 1)
     static let specialYellow = #colorLiteral(red: 0.9921568627, green: 0.8392156863, blue: 0.3568627451, alpha: 1)
     static let specialBrown = #colorLiteral(red: 0.7098039216, green: 0.6901960784, blue: 0.6196078431, alpha: 1)
