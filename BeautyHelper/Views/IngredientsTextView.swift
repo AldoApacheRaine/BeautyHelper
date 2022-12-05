@@ -24,11 +24,13 @@ class IngredientsTextView: UITextView {
         text = "Введите компоненты через запятую"
         textColor = .lightGray
         textAlignment = .left
-        isScrollEnabled = false
+        isScrollEnabled = true
         font = .systemFont(ofSize: 18)
-        addShadowOnTextView()
         backgroundColor = .specialTextView
         layer.cornerRadius = 7
+        layer.masksToBounds = true
+// Подложить вьюху под текст вью и ей сделать углы и тень
+//        addShadowOnTextView()
         translatesAutoresizingMaskIntoConstraints = false
     }
     

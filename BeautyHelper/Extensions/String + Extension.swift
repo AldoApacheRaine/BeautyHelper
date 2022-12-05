@@ -18,6 +18,10 @@ extension String {
             let finalText = croppedText.replacingOccurrences(of: ".", with: ",").uppercased()
             let componentsArray = finalText.components(separatedBy: ",").map{ $0.trimmingCharacters(in: .whitespacesAndNewlines) }
             components = componentsArray
+        } else {
+            let finalText = self.replacingOccurrences(of: ".", with: ",").uppercased()
+            let componentsArray = finalText.components(separatedBy: ",").map{ $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            components = componentsArray
         }
         return components
     }

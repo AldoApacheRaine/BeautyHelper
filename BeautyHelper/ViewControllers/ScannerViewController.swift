@@ -35,7 +35,7 @@ class ScannerViewController: UIViewController {
     }
     
     private lazy var logoImageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.image = UIImage(named: "logo")
         imageView.contentMode = .scaleAspectFill
         imageView.addShadowOnView()
@@ -44,36 +44,39 @@ class ScannerViewController: UIViewController {
     }()
     
     private lazy var ingredientsTextView = IngredientsTextView()
-
-// Узнать про правильность использования кнопок такого вида!!!
-
+    
+    // Узнать про правильность использования кнопок такого вида!!!
+    
     private lazy var scanButton = CustomButton(title: "Сканировать", target: self, action: #selector(scanButtonTapped))
     
     private lazy var analyzeButton = CustomButton(title: "Анализировать состав", target: self, action: #selector(analyzeButtonTapped))
     
     
-//    private lazy var scanButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.backgroundColor = .specialButton
-//        button.tintColor = .white
-//        button.layer.cornerRadius = 10
-//        button.setTitle("Сканировать", for: .normal)
-//        button.titleLabel?.textAlignment = .center
-////        button.titleLabel?.font = .robotoBold16()
-//        button.addTarget(self, action: #selector(scanButtonTapped), for: .touchUpInside)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
-
+    //    private lazy var scanButton: UIButton = {
+    //        let button = UIButton(type: .system)
+    //        button.backgroundColor = .specialButton
+    //        button.tintColor = .white
+    //        button.layer.cornerRadius = 10
+    //        button.setTitle("Сканировать", for: .normal)
+    //        button.titleLabel?.textAlignment = .center
+    ////        button.titleLabel?.font = .robotoBold16()
+    //        button.addTarget(self, action: #selector(scanButtonTapped), for: .touchUpInside)
+    //        button.translatesAutoresizingMaskIntoConstraints = false
+    //        return button
+    //    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationItem.title = "Сканер"
+        //        navigationItem.title = "Сканер"
         
         loadJson()
         
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         scrollView.delegate = self
-
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        self.hideKeyboardWhenTappedAround()
         setupViews()
         setupNavBar()
         setConstraints()
@@ -96,7 +99,7 @@ class ScannerViewController: UIViewController {
         self.navigationController?.view.backgroundColor = UIColor.clear
     }
     
-
+    
     
     @objc private func scanButtonTapped(_ sender: UIButton) {
         self.imagePicker?.present(from: sender)
@@ -104,7 +107,7 @@ class ScannerViewController: UIViewController {
     
     @objc private func analyzeButtonTapped(_ sender: UIButton) {
         print("Анализирую")
-        print(ingredientsTextView.text)
+        compareComponents(ingredientsTextView.text.stringToComponents(), ingredientsDB)
     }
     
     func loadJson() {
@@ -121,7 +124,6 @@ class ScannerViewController: UIViewController {
         }
     }
     
-
     private func recognizeText(image: UIImage?) {
         guard let cgimage = image?.cgImage else { return }
         
@@ -137,12 +139,6 @@ class ScannerViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 guard let ingredients = self?.ingredientsDB else { return }
                 self?.compareComponents(text.stringToComponents(), ingredients)
-                
-                let ingredientsVC = ProductIngredientsViewController()
-                ingredientsVC.ingredients = self!.productIngredients
-                self?.navigationController?.pushViewController(ingredientsVC, animated: true)
-                
-                self?.ingredientsTextView.text = text.stringToComponents().joined(separator: ", ")
             }
         }
         do {
@@ -154,6 +150,7 @@ class ScannerViewController: UIViewController {
     }
     
     private func compareComponents(_ productComponents: [String], _ ingredientsDB: [Ingredient]) {
+        
         for component in productComponents {
             for ingredient in ingredientsDB {
                 if component == ingredient.name.uppercased() {
@@ -161,9 +158,27 @@ class ScannerViewController: UIViewController {
                 }
             }
         }
-        print(productIngredients)
+        let ingredientsVC = ProductIngredientsViewController()
+        ingredientsVC.ingredients = productIngredients
+        navigationController?.pushViewController(ingredientsVC, animated: true)
     }
 }
+    
+    
+//    private func compareComponents1(_ productComponents: [String], _ ingredientsDB: [Ingredient]) {
+//        for component in productComponents {
+//            var filterdItemsArray = ingredientsDB.filter { item in
+//                return item.name.uppercased().contains(component.uppercased())
+//
+//            }
+//            productIngredients = filterdItemsArray
+//
+//        }
+//        let ingredientsVC = ProductIngredientsViewController()
+//        ingredientsVC.ingredients = productIngredients
+//        navigationController?.pushViewController(ingredientsVC, animated: true)
+//    }
+
 
 // MARK: - ImagePickerDelegate
 
@@ -209,6 +224,26 @@ extension ScannerViewController {
         ])
     }
 }
+
+// MARK: - Keyboard
+
+extension ScannerViewController {
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        //        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= 150
+            //            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+}
+
 
 // MARK: - UIScrollViewDelegate
 
