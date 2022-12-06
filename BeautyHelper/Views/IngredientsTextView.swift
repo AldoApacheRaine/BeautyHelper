@@ -29,8 +29,6 @@ class IngredientsTextView: UITextView {
         backgroundColor = .specialTextView
         layer.cornerRadius = 7
         layer.masksToBounds = true
-// Подложить вьюху под текст вью и ей сделать углы и тень
-//        addShadowOnTextView()
         translatesAutoresizingMaskIntoConstraints = false
     }
     

@@ -43,6 +43,15 @@ class ScannerViewController: UIViewController {
         return imageView
     }()
     
+    private lazy var viewUnderText: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 7
+        view.addShadowOnTextView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private lazy var ingredientsTextView = IngredientsTextView()
     
     // Узнать про правильность использования кнопок такого вида!!!
@@ -67,8 +76,6 @@ class ScannerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        navigationItem.title = "Сканер"
-        
         loadJson()
         
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
@@ -82,11 +89,20 @@ class ScannerViewController: UIViewController {
         setConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ingredientsTextView.text = "Введите компоненты через запятую"
+        ingredientsTextView.textColor = .lightGray
+        productIngredients = []
+        
+    }
+    
     private func setupViews() {
         view.backgroundColor = .specialBackground
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(logoImageView)
+        contentView.addSubview(viewUnderText)
         contentView.addSubview(ingredientsTextView)
         contentView.addSubview(scanButton)
         contentView.addSubview(analyzeButton)
@@ -117,7 +133,6 @@ class ScannerViewController: UIViewController {
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode([Ingredient].self, from: data)
                 ingredientsDB = jsonData
-                print(ingredientsDB)
             } catch {
                 print("error:\(error)")
             }
@@ -150,13 +165,10 @@ class ScannerViewController: UIViewController {
     }
     
     private func compareComponents(_ productComponents: [String], _ ingredientsDB: [Ingredient]) {
-        
         for component in productComponents {
-            for ingredient in ingredientsDB {
-                if component == ingredient.name.uppercased() {
-                    productIngredients.append(ingredient)
-                }
-            }
+            let filterdItemsArray = ingredientsDB.filter { $0.name.uppercased() == component.uppercased() }
+            print("Компонент из фото, текста - \(component)")
+            productIngredients.append(contentsOf: filterdItemsArray)
         }
         let ingredientsVC = ProductIngredientsViewController()
         ingredientsVC.ingredients = productIngredients
@@ -165,19 +177,21 @@ class ScannerViewController: UIViewController {
 }
     
     
-//    private func compareComponents1(_ productComponents: [String], _ ingredientsDB: [Ingredient]) {
+    
+//    private func compareComponents(_ productComponents: [String], _ ingredientsDB: [Ingredient]) {
 //        for component in productComponents {
-//            var filterdItemsArray = ingredientsDB.filter { item in
-//                return item.name.uppercased().contains(component.uppercased())
-//
+//            let filterdItemsArray = ingredientsDB.filter { item in
+//                item.name.uppercased().contains(component.uppercased())
 //            }
-//            productIngredients = filterdItemsArray
-//
+//            print("Компонент из фото, текста - \(component)")
+//            productIngredients.append(contentsOf: filterdItemsArray)
+////            print("Компоненты из БД - \(productIngredients)")
 //        }
 //        let ingredientsVC = ProductIngredientsViewController()
 //        ingredientsVC.ingredients = productIngredients
 //        navigationController?.pushViewController(ingredientsVC, animated: true)
 //    }
+//}
 
 
 // MARK: - ImagePickerDelegate
@@ -210,10 +224,17 @@ extension ScannerViewController {
         ])
         
         NSLayoutConstraint.activate([
+            viewUnderText.topAnchor.constraint(equalTo: ingredientsTextView.topAnchor),
+            viewUnderText.leadingAnchor.constraint(equalTo: ingredientsTextView.leadingAnchor),
+            viewUnderText.trailingAnchor.constraint(equalTo: ingredientsTextView.trailingAnchor),
+            viewUnderText.bottomAnchor.constraint(equalTo: ingredientsTextView.bottomAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
             ingredientsTextView.topAnchor.constraint(equalTo: scanButton.bottomAnchor, constant: 16),
             ingredientsTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             ingredientsTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            ingredientsTextView.heightAnchor.constraint(equalToConstant: 200),
+            ingredientsTextView.heightAnchor.constraint(equalToConstant: 200)
         ])
         
         NSLayoutConstraint.activate([

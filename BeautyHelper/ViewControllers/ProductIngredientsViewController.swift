@@ -23,7 +23,7 @@ class ProductIngredientsViewController: UIViewController {
         setupViews()
         setConstraints()
         setTableView()
-        print(ingredients)
+//        print(ingredients)
     }
     
     private func setupViews() {
@@ -54,7 +54,8 @@ extension ProductIngredientsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(IngredientTableViewCell.self) {
-            cell.cellConfigure(ingredients[indexPath.row].name, ingredients[indexPath.row].effects)
+            let ingredient = ingredients[indexPath.row]
+            cell.cellConfigure(ingredient.name, ingredient.effects)
             return cell
         }
         return UITableViewCell()
