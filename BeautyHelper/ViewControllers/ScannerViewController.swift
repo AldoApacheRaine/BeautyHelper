@@ -125,7 +125,7 @@ class ScannerViewController: UIViewController {
         print("Анализирую")
         compareComponents(ingredientsTextView.text.stringToComponents(), ingredientsDB)
     }
-    
+
     func loadJson() {
         if let url = Bundle.main.url(forResource: "ingredients", withExtension: "json") {
             do {

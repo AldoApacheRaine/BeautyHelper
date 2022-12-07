@@ -55,7 +55,7 @@ extension ProductIngredientsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(IngredientTableViewCell.self) {
             let ingredient = ingredients[indexPath.row]
-            cell.cellConfigure(ingredient.name, ingredient.effects)
+            cell.cellConfigure(ingredient.name, ingredient.effects.value)
             return cell
         }
         return UITableViewCell()

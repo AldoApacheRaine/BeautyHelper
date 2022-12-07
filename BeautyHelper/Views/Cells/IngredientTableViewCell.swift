@@ -11,7 +11,7 @@ class IngredientTableViewCell: UITableViewCell {
         
     private lazy var nameLabel: UILabel = {
        let label = UILabel()
-        label.font = .systemFont(ofSize: 16)
+        label.font = .systemFont(ofSize: 18)
         label.numberOfLines = 0
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -20,7 +20,7 @@ class IngredientTableViewCell: UITableViewCell {
     
     private lazy var effectLabel: UILabel = {
        let label = UILabel()
-        label.font = .systemFont(ofSize: 16)
+        label.font = .systemFont(ofSize: 18)
         label.numberOfLines = 0
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
