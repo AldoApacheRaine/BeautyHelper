@@ -11,6 +11,7 @@ class ProductIngredientsViewController: UIViewController {
     
     private lazy var ingredientsTableView: UITableView = {
         let tableView = UITableView()
+        tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -20,6 +21,7 @@ class ProductIngredientsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Результат анализа"
         setupViews()
         setConstraints()
         setTableView()
@@ -55,10 +57,26 @@ extension ProductIngredientsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(IngredientTableViewCell.self) {
             let ingredient = ingredients[indexPath.row]
-            cell.cellConfigure(ingredient.name, ingredient.effects.value)
+            cell.cellConfigure(ingredient.name, ingredient.effects)
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("нажато на ячейку - \(indexPath.row)")
+        let slideVC = IngredientDetailViewController()
+        slideVC.modalPresentationStyle = .custom
+        slideVC.transitioningDelegate = self
+        self.present(slideVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Presentation Controller
+
+extension ProductIngredientsViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        PresentationController(presentedViewController: presented, presenting: presenting)
     }
 }
 
