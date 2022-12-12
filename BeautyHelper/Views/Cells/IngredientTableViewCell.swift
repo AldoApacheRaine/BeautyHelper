@@ -38,6 +38,7 @@ class IngredientTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
         setConstraints()
+        selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {

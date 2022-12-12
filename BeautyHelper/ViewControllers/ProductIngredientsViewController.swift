@@ -65,7 +65,11 @@ extension ProductIngredientsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("нажато на ячейку - \(indexPath.row)")
+        print("Ингредиент - \(ingredients[indexPath.row].name)")
+        print("Описание - \(ingredients[indexPath.row].discription)")
+
         let slideVC = IngredientDetailViewController()
+        slideVC.ingredient = ingredients[indexPath.row]
         slideVC.modalPresentationStyle = .custom
         slideVC.transitioningDelegate = self
         self.present(slideVC, animated: true, completion: nil)
