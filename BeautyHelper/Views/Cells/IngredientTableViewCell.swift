@@ -52,7 +52,7 @@ class IngredientTableViewCell: UITableViewCell {
         view.addSubview(effectLabel)
     }
     
-    public func cellConfigure(_ name: String, _ effect: Effects) {
+    public func cellConfigure(_ name: String, _ effect: TypeEnum) {
         nameLabel.text = name.uppercased()
         effectLabel.text = effect.value
         switch effect {

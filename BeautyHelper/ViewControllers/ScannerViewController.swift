@@ -127,7 +127,7 @@ class ScannerViewController: UIViewController {
     }
 
     func loadJson() {
-        if let url = Bundle.main.url(forResource: "ingredients", withExtension: "json") {
+        if let url = Bundle.main.url(forResource: "ingredients-modified", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()

@@ -57,7 +57,7 @@ extension ProductIngredientsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(IngredientTableViewCell.self) {
             let ingredient = ingredients[indexPath.row]
-            cell.cellConfigure(ingredient.name, ingredient.effects)
+            cell.cellConfigure(ingredient.name, ingredient.type)
             return cell
         }
         return UITableViewCell()
@@ -66,7 +66,9 @@ extension ProductIngredientsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("нажато на ячейку - \(indexPath.row)")
         print("Ингредиент - \(ingredients[indexPath.row].name)")
-        print("Описание - \(ingredients[indexPath.row].discription)")
+        print("Описание - \(ingredients[indexPath.row].description)")
+        print("Эффект - \(ingredients[indexPath.row].effect)")
+
 
         let slideVC = IngredientDetailViewController()
         slideVC.ingredient = ingredients[indexPath.row]

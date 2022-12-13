@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC65712A2948F192005B6776 /* ingredients-modified.json in Resources */ = {isa = PBXBuildFile; fileRef = EC6571292948F192005B6776 /* ingredients-modified.json */; };
 		EC8D2475292BEA6D009F1C30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D2474292BEA6D009F1C30 /* AppDelegate.swift */; };
 		EC8D2477292BEA6D009F1C30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D2476292BEA6D009F1C30 /* SceneDelegate.swift */; };
 		EC8D2479292BEA6D009F1C30 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D2478292BEA6D009F1C30 /* MainTabBarController.swift */; };
@@ -23,7 +24,6 @@
 		EC986DE52937D8A000F24F56 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC986DE42937D8A000F24F56 /* UIView + Extension.swift */; };
 		EC9B0E0B292FDD57002DF9F0 /* UIScreen + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B0E0A292FDD57002DF9F0 /* UIScreen + Extension.swift */; };
 		EC9B0E0E292FE3E4002DF9F0 /* IngredientsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B0E0D292FE3E4002DF9F0 /* IngredientsModel.swift */; };
-		EC9B0E13292FED35002DF9F0 /* ingredients.json in Resources */ = {isa = PBXBuildFile; fileRef = EC9B0E12292FED35002DF9F0 /* ingredients.json */; };
 		ECA42D53293910CC00177734 /* IngredientsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA42D52293910CC00177734 /* IngredientsTextView.swift */; };
 		ECA42D56293926B700177734 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA42D55293926B700177734 /* Buttons.swift */; };
 		ECB05F14293E6A9400B8B77F /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB05F13293E6A9400B8B77F /* UIViewController + Extension.swift */; };
@@ -33,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC6571292948F192005B6776 /* ingredients-modified.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "ingredients-modified.json"; path = "BeautyHelper/ingredients-modified.json"; sourceTree = SOURCE_ROOT; };
 		EC8D2471292BEA6D009F1C30 /* BeautyHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeautyHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8D2474292BEA6D009F1C30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC8D2476292BEA6D009F1C30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 		EC986DE42937D8A000F24F56 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		EC9B0E0A292FDD57002DF9F0 /* UIScreen + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen + Extension.swift"; sourceTree = "<group>"; };
 		EC9B0E0D292FE3E4002DF9F0 /* IngredientsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsModel.swift; sourceTree = "<group>"; };
-		EC9B0E12292FED35002DF9F0 /* ingredients.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ingredients.json; sourceTree = "<group>"; };
 		ECA42D52293910CC00177734 /* IngredientsTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsTextView.swift; sourceTree = "<group>"; };
 		ECA42D55293926B700177734 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		ECB05F13293E6A9400B8B77F /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 		EC8D2473292BEA6D009F1C30 /* BeautyHelper */ = {
 			isa = PBXGroup;
 			children = (
-				EC9B0E12292FED35002DF9F0 /* ingredients.json */,
+				EC6571292948F192005B6776 /* ingredients-modified.json */,
 				EC8D2488292BEC71009F1C30 /* Application */,
 				EC9B0E0C292FE3C9002DF9F0 /* Models */,
 				EC8E96B6292E99F300789CDC /* Views */,
@@ -241,8 +241,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC8D2481292BEA6D009F1C30 /* LaunchScreen.storyboard in Resources */,
-				EC9B0E13292FED35002DF9F0 /* ingredients.json in Resources */,
 				EC8D247E292BEA6D009F1C30 /* Assets.xcassets in Resources */,
+				EC65712A2948F192005B6776 /* ingredients-modified.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

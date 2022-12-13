@@ -133,11 +133,11 @@ class IngredientDetailViewController: UIViewController {
     
     private func setDetails() {
         nameLabel.text = ingredient?.name.uppercased()
-        typeLabel.text = ingredient?.type
-        if ingredient?.discription == "" {
+        typeLabel.text = ingredient?.type.value
+        if ingredient?.description == nil {
             descriptionLabel.text = "Нет описания."
         } else {
-            descriptionLabel.text = ingredient?.discription
+            descriptionLabel.text = ingredient?.description
         }
     }
  
