@@ -104,9 +104,9 @@ enum Effect: String, Codable {
         case .silicones:
             return "Силикон"
         case .skinReplenishing:
-            return "Восстановление кожи"
+            return "Регенерация кожи"
         case .skinRestoring:
-            return "«Восстановление кожи»"
+            return "Восстановление кожи"
         case .skinSoftening:
             return "Смягчение кожи"
         case .skinSoothing:
@@ -120,7 +120,7 @@ enum Effect: String, Codable {
         case .thickeners:
             return "Загуститель"
         case .thickenersEmulsifiers:
-            return "«Загуститель/эмульгатор"
+            return "Загуститель/эмульгатор"
         case .uncategorized:
             return "Без категории"
         case .vitamins:

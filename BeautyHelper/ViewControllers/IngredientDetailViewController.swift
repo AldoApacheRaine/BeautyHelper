@@ -33,6 +33,8 @@ class IngredientDetailViewController: UIViewController {
 //        CGSize(width: view.frame.width, height: view.frame.height + 1)
 //    }
     
+    private lazy var effectsCollectionView = EffectsCollectionView()
+    
     private lazy var slideIndicator: UIView = {
        let view = UIView()
         view.backgroundColor = .lightGray
@@ -124,6 +126,7 @@ class IngredientDetailViewController: UIViewController {
         view.addSubview(slideIndicator)
         view.addSubview(ingredientImageView)
         view.addSubview(nameLabel)
+        view.addSubview(effectsCollectionView)
         view.addSubview(typeLabel)
         view.addSubview(descriptionLabel)
 //        view.addSubview(scrollView)
@@ -132,6 +135,7 @@ class IngredientDetailViewController: UIViewController {
     }
     
     private func setDetails() {
+        effectsCollectionView.ingredient = ingredient
         nameLabel.text = ingredient?.name.uppercased()
         typeLabel.text = ingredient?.type.value
         if ingredient?.description == nil {
@@ -170,7 +174,14 @@ extension IngredientDetailViewController {
         ])
         
         NSLayoutConstraint.activate([
-            typeLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
+            effectsCollectionView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16),
+            effectsCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+            effectsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            effectsCollectionView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
+        NSLayoutConstraint.activate([
+            typeLabel.topAnchor.constraint(equalTo: effectsCollectionView.bottomAnchor, constant: 16),
             typeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         

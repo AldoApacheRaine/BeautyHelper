@@ -25,7 +25,6 @@ class ProductIngredientsViewController: UIViewController {
         setupViews()
         setConstraints()
         setTableView()
-//        print(ingredients)
     }
     
     private func setupViews() {

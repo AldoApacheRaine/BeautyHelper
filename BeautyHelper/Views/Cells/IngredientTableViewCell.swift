@@ -18,7 +18,7 @@ class IngredientTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var effectLabel: UILabel = {
+    private lazy var typeLabel: UILabel = {
        let label = UILabel()
         label.font = .systemFont(ofSize: 16)
         label.numberOfLines = 0
@@ -49,13 +49,13 @@ class IngredientTableViewCell: UITableViewCell {
         backgroundColor = .clear
         addSubview(view)
         view.addSubview(nameLabel)
-        view.addSubview(effectLabel)
+        view.addSubview(typeLabel)
     }
     
-    public func cellConfigure(_ name: String, _ effect: TypeEnum) {
+    public func cellConfigure(_ name: String, _ type: TypeEnum) {
         nameLabel.text = name.uppercased()
-        effectLabel.text = effect.value
-        switch effect {
+        typeLabel.text = type.value
+        switch type {
         case .best:
             view.backgroundColor = .specialBest
         case .good:
@@ -87,9 +87,9 @@ extension IngredientTableViewCell {
         ])
             
         NSLayoutConstraint.activate([
-            effectLabel.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor),
-            effectLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            effectLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 8)
+            typeLabel.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor),
+            typeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            typeLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 8)
         ])
        
     }
