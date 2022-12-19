@@ -18,6 +18,13 @@ class IngredientTableViewCell: UITableViewCell {
         return label
     }()
     
+    private lazy var factorImageView: UIImageView = {
+       let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
     private lazy var typeLabel: UILabel = {
        let label = UILabel()
         label.font = .systemFont(ofSize: 16)
@@ -50,20 +57,21 @@ class IngredientTableViewCell: UITableViewCell {
         addSubview(view)
         view.addSubview(nameLabel)
         view.addSubview(typeLabel)
+        view.addSubview(factorImageView)
     }
     
-    public func cellConfigure(_ name: String, _ type: TypeEnum) {
+    public func cellConfigure(_ name: String, _ factor: Factor) {
         nameLabel.text = name.uppercased()
-        typeLabel.text = type.value
-        switch type {
-        case .best:
+        typeLabel.text = factor.rawValue
+        factorImageView.image = factor.image
+        factorImageView.tintColor = factor.color
+        switch factor {
+        case .hight:
+            view.backgroundColor = .specialPoor
+        case .low:
             view.backgroundColor = .specialBest
-        case .good:
-            view.backgroundColor = .specialGood
         case .average:
             view.backgroundColor = .specialAverage
-        case .poor:
-            view.backgroundColor = .specialPoor
         }
     }
 }
@@ -85,11 +93,18 @@ extension IngredientTableViewCell {
             nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
             nameLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5),
         ])
+        
+        NSLayoutConstraint.activate([
+            factorImageView.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor),
+            factorImageView.trailingAnchor.constraint(equalTo: typeLabel.leadingAnchor, constant: -8),
+            factorImageView.heightAnchor.constraint(equalToConstant: 25),
+            factorImageView.widthAnchor.constraint(equalToConstant: 25)
+        ])
             
         NSLayoutConstraint.activate([
             typeLabel.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor),
             typeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            typeLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 8)
+            typeLabel.leadingAnchor.constraint(equalTo: factorImageView.trailingAnchor, constant: 8)
         ])
        
     }

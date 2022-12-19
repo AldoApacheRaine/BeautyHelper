@@ -6,187 +6,45 @@
 //
 
 import Foundation
+import UIKit
 
 struct Ingredient: Codable {
-    let name: String
-    let effect: [Effect]
-    let type: TypeEnum
-    let description: String?
+    let ruName: String
+    let latinName: String
+    let inciName: String
+    let category: [String]
+    let naturality: Naturality
+    let effect: [String]
+    let type: [String]
+    let factor: Factor
+    let description: String
+    let sinonim: [String]
 }
-enum TypeEnum: String, Codable {
-    case average = "Average"
-    case best = "Best"
-    case good = "Good"
-    case poor = "Poor"
+
+enum Factor: String, Codable {
+    case hight = "Высокий"
+    case low = "Низкий"
+    case average = "Средний"
     
-    var value: String {
+    var image: UIImage {
+        return value.image
+    }
+
+    var color: UIColor {
+        return value.color
+    }
+
+    private var value: (image: UIImage, color: UIColor) {
         switch self {
-        case .average:
-            return "Удовлетворительно"
-        case .best:
-            return "Отлично"
-        case .good:
-            return "Хорошо"
-        case .poor:
-            return "Плохо"
+        case .hight: return (UIImage(systemName: "xmark.circle.fill")!, UIColor.red)
+        case .average: return (UIImage(systemName: "exclamationmark.circle.fill")!, UIColor.orange)
+        case .low: return (UIImage(systemName: "checkmark.seal.fill")!, UIColor.systemGreen)
         }
     }
 }
 
-enum Effect: String, Codable {
-    case absorbent = "Absorbent"
-    case antiAcne = "Anti-Acne"
-    case antioxidants = "Antioxidants"
-    case cleansingAgents = "Cleansing Agents"
-    case coloringAgentsPigments = "Coloring Agents/Pigments"
-    case emollients = "Emollients"
-    case emulsifiers = "Emulsifiers"
-    case exfoliant = "Exfoliant"
-    case filmFormingAgents = "Film-Forming Agents"
-    case filmFormingHoldingAgents = "Film-Forming/Holding Agents"
-    case fragranceSyntheticAndFragrantPlantExtract = "Fragrance: Synthetic and Fragrant Plant Extract"
-    case hydration = "Hydration"
-    case miscellaneous = "Miscellaneous"
-    case plantExtracts = "Plant Extracts"
-    case preservatives = "Preservatives"
-    case scrubAgents = "Scrub Agents"
-    case sensitizing = "Sensitizing"
-    case silicones = "Silicones"
-    case skinReplenishing = "Skin-Replenishing"
-    case skinRestoring = "Skin-Restoring"
-    case skinSoftening = "Skin-Softening"
-    case skinSoothing = "Skin-Soothing"
-    case slipAgents = "Slip Agents"
-    case sunscreenActives = "Sunscreen Actives"
-    case textureEnhancer = "Texture Enhancer"
-    case thickeners = "Thickeners"
-    case thickenersEmulsifiers = "Thickeners/Emulsifiers"
-    case uncategorized = "Uncategorized"
-    case vitamins = "Vitamins"
-    
-    var value: String {
-        switch self {
-            
-        case .absorbent:
-            return "Абсорбент"
-        case .antiAcne:
-            return "Анти-акне"
-        case .antioxidants:
-            return "Антиоксидант"
-        case .cleansingAgents:
-            return "Очищающий агент"
-        case .coloringAgentsPigments:
-            return "Краситель/пигмент"
-        case .emollients:
-            return "Смягчающее средство"
-        case .emulsifiers:
-            return "Эмульгатор"
-        case .exfoliant:
-            return "Эксфолиант"
-        case .filmFormingAgents:
-            return "Пленкообразующий агент"
-        case .filmFormingHoldingAgents:
-            return "Пленкообразующий/удерживающий агент"
-        case .fragranceSyntheticAndFragrantPlantExtract:
-            return "Аромат: синтетический и ароматный растительный экстракт"
-        case .hydration:
-            return "Увлажнение"
-        case .miscellaneous:
-            return "Разнообразный"
-        case .plantExtracts:
-            return "Экстракт растений"
-        case .preservatives:
-            return "Консервант"
-        case .scrubAgents:
-            return "Скрабирующий агент"
-        case .sensitizing:
-            return "Повышение чувствительности"
-        case .silicones:
-            return "Силикон"
-        case .skinReplenishing:
-            return "Регенерация кожи"
-        case .skinRestoring:
-            return "Восстановление кожи"
-        case .skinSoftening:
-            return "Смягчение кожи"
-        case .skinSoothing:
-            return "Успокаивающий кожу"
-        case .slipAgents:
-            return "Скольжение"
-        case .sunscreenActives:
-            return "Солнцезащитное действие"
-        case .textureEnhancer:
-            return "Улучшение текстуры"
-        case .thickeners:
-            return "Загуститель"
-        case .thickenersEmulsifiers:
-            return "Загуститель/эмульгатор"
-        case .uncategorized:
-            return "Без категории"
-        case .vitamins:
-            return "Витамины"
-        }
-    }
+
+enum Naturality: String, Codable {
+    case natural = "Натуральный"
+    case synthetic = "Синтетический"
 }
-/*
-Preservatives
- Emollients
- Skin-Soothing
- Plant Extracts
- Fragrance: Synthetic and Fragrant Plant Extracts
- Texture Enhancer
- Antioxidants
- Sensitizing
- Skin-Replenishing
- Hydration
- Skin-Restoring
- Film-Forming/Holding Agents
- Miscellaneous
- Cleansing Agents
- Silicones
- Exfoliant
- Uncategorized
- Vitamins
- Scrub Agents
- Absorbent
- Coloring Agents/Pigments
- Sunscreen Actives
- Thickeners/Emulsifiers
- Preservatives
- Anti-Acne
- Skin-Softening
- Film-Forming Agents
- Emulsifiers
- Slip Agents
- Thickeners
- 
- «Абсорбент»
- "Анти-акне"
- «Антиоксиданты»
- «Очищающие агенты»
- «Красители/пигменты»
- «Смягчающие средства»
- «Эмульгаторы»
- «Эксфолиант»
- «Пленкообразующие агенты»
- «Пленкообразующие/удерживающие агенты»
- «Аромат: синтетический и ароматный растительный экстракт»
- «Увлажнение»
- "Разнообразный"
- «Экстракты растений»
- «Консерванты»
- «Агенты скраба»
- «сенсибилизирующий»
- "Силиконы"
- «Восстановление кожи»
- «Восстановление кожи»
- «Смягчение кожи»
- "Успокаивающий кожу"
- "Скользящие агенты"
- «Солнцезащитные активы»
- «Улучшитель текстур»
- «Загустители»
- «Загустители/эмульгаторы»
- "Без категории"
- "Витамины"
-*/

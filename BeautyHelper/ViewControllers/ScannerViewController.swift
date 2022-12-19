@@ -127,7 +127,7 @@ class ScannerViewController: UIViewController {
     }
 
     func loadJson() {
-        if let url = Bundle.main.url(forResource: "ingredients-modified", withExtension: "json") {
+        if let url = Bundle.main.url(forResource: "ingredientDBNew", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
@@ -166,7 +166,7 @@ class ScannerViewController: UIViewController {
     
     private func compareComponents(_ productComponents: [String], _ ingredientsDB: [Ingredient]) {
         for component in productComponents {
-            let filterdItemsArray = ingredientsDB.filter { $0.name.uppercased() == component.uppercased() }
+            let filterdItemsArray = ingredientsDB.filter { $0.inciName.uppercased() == component.uppercased() }
             print("Компонент из фото, текста - \(component)")
             productIngredients.append(contentsOf: filterdItemsArray)
         }

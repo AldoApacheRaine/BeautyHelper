@@ -18,7 +18,6 @@ extension UIColor {
     static let SpecialBlack = #colorLiteral(red: 0.2470588235, green: 0.2470588235, blue: 0.2470588235, alpha: 1) // не используется
     static let SpecialTabBar = #colorLiteral(red: 0.9843137255, green: 0.9725490196, blue: 0.9764705882, alpha: 1)
     static let specialBest = #colorLiteral(red: 0.7921568627, green: 1, blue: 0.7490196078, alpha: 1)
-    static let specialGood = #colorLiteral(red: 0.8977850515, green: 1, blue: 0.7490196078, alpha: 1)
     static let specialAverage = #colorLiteral(red: 1, green: 0.9450980392, blue: 0.6470588235, alpha: 1)
     static let specialPoor = #colorLiteral(red: 1, green: 0.7960784314, blue: 0.6470588235, alpha: 1)
     static let specialCell = #colorLiteral(red: 0.994353354, green: 0.8618287444, blue: 0.8859904408, alpha: 1)

@@ -56,7 +56,7 @@ extension ProductIngredientsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(IngredientTableViewCell.self) {
             let ingredient = ingredients[indexPath.row]
-            cell.cellConfigure(ingredient.name, ingredient.type)
+            cell.cellConfigure(ingredient.inciName, ingredient.factor)
             return cell
         }
         return UITableViewCell()
@@ -64,24 +64,15 @@ extension ProductIngredientsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("нажато на ячейку - \(indexPath.row)")
-        print("Ингредиент - \(ingredients[indexPath.row].name)")
-        print("Описание - \(ingredients[indexPath.row].description)")
-        print("Эффект - \(ingredients[indexPath.row].effect)")
+        print("Ингредиент - \(ingredients[indexPath.row])")
+//        print("Описание - \(ingredients[indexPath.row].description)")
+//        print("Категории - \(ingredients[indexPath.row].category)")
 
 
         let slideVC = IngredientDetailViewController()
         slideVC.ingredient = ingredients[indexPath.row]
-        slideVC.modalPresentationStyle = .custom
-        slideVC.transitioningDelegate = self
+        slideVC.modalPresentationStyle = .automatic
         self.present(slideVC, animated: true, completion: nil)
-    }
-}
-
-// MARK: - Presentation Controller
-
-extension ProductIngredientsViewController: UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        PresentationController(presentedViewController: presented, presenting: presenting)
     }
 }
 
