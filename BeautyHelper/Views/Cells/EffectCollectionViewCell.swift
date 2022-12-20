@@ -16,17 +16,7 @@ class EffectCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    private lazy var effectImageView: UIImageView = {
-       let image = UIImageView()
-        image.image = UIImage(systemName: "leaf.fill")
-        image.contentMode = .scaleAspectFill
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }()
-    
-    private lazy var effectStackView = UIStackView()
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -40,9 +30,8 @@ class EffectCollectionViewCell: UICollectionViewCell {
     private func setupViews() {
         backgroundColor = .specialCell
         layer.cornerRadius = 10
-        
-        effectStackView = UIStackView(arrangedSubviews: [effectImageView, effectNameLabel], axis: .horizontal, aligment: .center, distribution: .equalSpacing, spacing: 8)
-        addSubview(effectStackView)
+ 
+        addSubview(effectNameLabel)
     }
     
     func cellConfigure(_ effectName: String) {
@@ -55,13 +44,9 @@ class EffectCollectionViewCell: UICollectionViewCell {
 extension EffectCollectionViewCell {
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            effectStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            effectStackView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            effectNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            effectNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
 
-        NSLayoutConstraint.activate([
-            effectImageView.widthAnchor.constraint(equalToConstant: 25),
-            effectImageView.heightAnchor.constraint(equalToConstant: 25)
-        ])
     }
 }

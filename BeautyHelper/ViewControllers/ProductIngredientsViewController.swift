@@ -64,9 +64,11 @@ extension ProductIngredientsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("нажато на ячейку - \(indexPath.row)")
-        print("Ингредиент - \(ingredients[indexPath.row])")
+//        print("Ингредиент - \(ingredients[indexPath.row])")
 //        print("Описание - \(ingredients[indexPath.row].description)")
 //        print("Категории - \(ingredients[indexPath.row].category)")
+        print("Фактор опасности - \(ingredients[indexPath.row].factorValue) \(ingredients[indexPath.row].factor.rawValue)")
+
 
 
         let slideVC = IngredientDetailViewController()

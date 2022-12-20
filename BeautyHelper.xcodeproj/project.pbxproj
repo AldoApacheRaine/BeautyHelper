@@ -29,8 +29,8 @@
 		ECB0FF5F294A2AAF007E7A64 /* EffectsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0FF5E294A2AAF007E7A64 /* EffectsCollectionView.swift */; };
 		ECB0FF61294A2C52007E7A64 /* EffectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0FF60294A2C52007E7A64 /* EffectCollectionViewCell.swift */; };
 		ECB0FF65294A4F09007E7A64 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0FF64294A4F09007E7A64 /* UIStackView + Extension.swift */; };
-		ECB593E42950C9B90015FB35 /* ingredientDBNew.json in Resources */ = {isa = PBXBuildFile; fileRef = ECB593E32950C9B90015FB35 /* ingredientDBNew.json */; };
 		ECC479FC293677AD00A0155F /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC479FB293677AD00A0155F /* String + Extension.swift */; };
+		ECCE2BB2295227E7001C4A28 /* ingredientDBNew.json in Resources */ = {isa = PBXBuildFile; fileRef = ECCE2BB1295227E7001C4A28 /* ingredientDBNew.json */; };
 		ECDE3A1C294268B000841CFB /* IngredientDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE3A1B294268B000841CFB /* IngredientDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,8 +59,8 @@
 		ECB0FF5E294A2AAF007E7A64 /* EffectsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsCollectionView.swift; sourceTree = "<group>"; };
 		ECB0FF60294A2C52007E7A64 /* EffectCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectCollectionViewCell.swift; sourceTree = "<group>"; };
 		ECB0FF64294A4F09007E7A64 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
-		ECB593E32950C9B90015FB35 /* ingredientDBNew.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ingredientDBNew.json; sourceTree = "<group>"; };
 		ECC479FB293677AD00A0155F /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		ECCE2BB1295227E7001C4A28 /* ingredientDBNew.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ingredientDBNew.json; sourceTree = "<group>"; };
 		ECDE3A1B294268B000841CFB /* IngredientDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,7 +94,7 @@
 		EC8D2473292BEA6D009F1C30 /* BeautyHelper */ = {
 			isa = PBXGroup;
 			children = (
-				ECB593E32950C9B90015FB35 /* ingredientDBNew.json */,
+				ECCE2BB1295227E7001C4A28 /* ingredientDBNew.json */,
 				EC8D2488292BEC71009F1C30 /* Application */,
 				EC9B0E0C292FE3C9002DF9F0 /* Models */,
 				EC8E96B6292E99F300789CDC /* Views */,
@@ -247,7 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC8D2481292BEA6D009F1C30 /* LaunchScreen.storyboard in Resources */,
-				ECB593E42950C9B90015FB35 /* ingredientDBNew.json in Resources */,
+				ECCE2BB2295227E7001C4A28 /* ingredientDBNew.json in Resources */,
 				EC8D247E292BEA6D009F1C30 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

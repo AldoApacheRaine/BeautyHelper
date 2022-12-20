@@ -66,7 +66,7 @@ extension EffectsCollectionView: UICollectionViewDelegateFlowLayout {
         let cellFont = UIFont.systemFont(ofSize: 16)
         let cellAttributes = [NSAttributedString.Key.font : cellFont as Any]
         if let cellWidth = ingredient?.category[indexPath.row].size(withAttributes: cellAttributes).width {
-            return CGSize(width: cellWidth + 58, height: collectionView.frame.height)
+            return CGSize(width: cellWidth + 20, height: collectionView.frame.height)
         }
         return CGSize(width: 200, height: collectionView.frame.height)
     }

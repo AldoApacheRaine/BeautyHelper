@@ -17,8 +17,9 @@ struct Ingredient: Codable {
     let effect: [String]
     let type: [String]
     let factor: Factor
+    let factorValue: String
     let description: String
-    let sinonim: [String]
+    let synonym: [String]
 }
 
 enum Factor: String, Codable {
@@ -47,4 +48,29 @@ enum Factor: String, Codable {
 enum Naturality: String, Codable {
     case natural = "Натуральный"
     case synthetic = "Синтетический"
+    
+    var image: UIImage {
+        return value.image
+    }
+
+    var color: UIColor {
+        return value.color
+    }
+
+    private var value: (image: UIImage, color: UIColor) {
+        switch self {
+        case .natural: return (UIImage(systemName: "leaf.fill")!, UIColor.systemGreen)
+        case .synthetic: return (UIImage(systemName: "testtube.2")!, UIColor.purple)
+        }
+    }
+    
+    var titleImage: UIImage {
+        switch self {
+        case .natural:
+            return UIImage(named: "naturaly")!
+        case .synthetic:
+            return UIImage(named: "synthetic")!
+
+        }
+    }
 }
