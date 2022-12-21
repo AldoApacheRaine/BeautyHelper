@@ -15,33 +15,33 @@ class ScannerViewController: UIViewController {
     var ingredientsDB: [Ingredient] = []
     var productIngredients: [Ingredient] = []
     
-    private lazy var scrollView: UIScrollView = {
-        let scroll = UIScrollView()
-        scroll.contentInsetAdjustmentBehavior = .never
-        scroll.frame = self.view.bounds
-        scroll.contentSize = contentSize
-        return scroll
-    }()
+//    private lazy var scrollView: UIScrollView = {
+//        let scroll = UIScrollView()
+//        scroll.contentInsetAdjustmentBehavior = .never
+//        scroll.frame = self.view.bounds
+//        scroll.contentSize = contentSize
+//        return scroll
+//    }()
+//
+//    private lazy var contentView: UIView = {
+//        let contentView = UIView()
+//        contentView.backgroundColor = .clear
+//        contentView.frame.size = contentSize
+//        return contentView
+//    }()
+//
+//    private var contentSize: CGSize {
+//        CGSize(width: view.frame.width, height: view.frame.height + 1)
+//    }
     
-    private lazy var contentView: UIView = {
-        let contentView = UIView()
-        contentView.backgroundColor = .clear
-        contentView.frame.size = contentSize
-        return contentView
-    }()
-    
-    private var contentSize: CGSize {
-        CGSize(width: view.frame.width, height: view.frame.height + 1)
-    }
-    
-    private lazy var logoImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "logo")
-        imageView.contentMode = .scaleAspectFill
-        imageView.addShadowOnView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+//    private lazy var logoImageView: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.image = UIImage(named: "logo")
+//        imageView.contentMode = .scaleAspectFill
+//        imageView.addShadowOnView()
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        return imageView
+//    }()
     
     private lazy var viewUnderText: UIView = {
         let view = UIView()
@@ -79,7 +79,7 @@ class ScannerViewController: UIViewController {
         loadJson()
         
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
-        scrollView.delegate = self
+//        scrollView.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -99,20 +99,24 @@ class ScannerViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .specialBackground
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        contentView.addSubview(logoImageView)
-        contentView.addSubview(viewUnderText)
-        contentView.addSubview(ingredientsTextView)
-        contentView.addSubview(scanButton)
-        contentView.addSubview(analyzeButton)
+//        view.addSubview(scrollView)
+//        scrollView.addSubview(contentView)
+//        contentView.addSubview(logoImageView)
+        view.addSubview(viewUnderText)
+        view.addSubview(ingredientsTextView)
+        view.addSubview(scanButton)
+        view.addSubview(analyzeButton)
     }
     
     private func setupNavBar() {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = UIColor.clear
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        self.navigationController?.navigationBar.isTranslucent = true
+//        self.navigationController?.view.backgroundColor = UIColor.clear
+        navigationItem.title = "Beauty Helper"
+        let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 18)]
+        self.navigationController?.navigationBar.titleTextAttributes = attributes
+
     }
     
     
@@ -209,17 +213,17 @@ extension ScannerViewController {
     
     private func setConstraints() {
         
-        NSLayoutConstraint.activate([
-            logoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            logoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            logoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            logoImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3)
-        ])
+//        NSLayoutConstraint.activate([
+//            logoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+//            logoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+//            logoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+//            logoImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3)
+//        ])
         
         NSLayoutConstraint.activate([
-            scanButton.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 16),
-            scanButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            scanButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            scanButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            scanButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            scanButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             scanButton.heightAnchor.constraint(equalToConstant: 50)
         ])
         
@@ -232,15 +236,15 @@ extension ScannerViewController {
         
         NSLayoutConstraint.activate([
             ingredientsTextView.topAnchor.constraint(equalTo: scanButton.bottomAnchor, constant: 16),
-            ingredientsTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            ingredientsTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            ingredientsTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            ingredientsTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             ingredientsTextView.heightAnchor.constraint(equalToConstant: 200)
         ])
         
         NSLayoutConstraint.activate([
             analyzeButton.topAnchor.constraint(equalTo: ingredientsTextView.bottomAnchor, constant: 16),
-            analyzeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            analyzeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            analyzeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            analyzeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             analyzeButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
@@ -267,19 +271,19 @@ extension ScannerViewController {
 
 
 // MARK: - UIScrollViewDelegate
-
-extension ScannerViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offset = scrollView.contentOffset
-        
-        if offset.y < 0.0 {
-            var transform = CATransform3DTranslate(CATransform3DIdentity, 0, offset.y, 0)
-            let scaleFactor = 1 + (-1 * offset.y / (logoImageView.frame.height / 2))
-            transform = CATransform3DScale(transform, scaleFactor, scaleFactor, 1)
-            logoImageView.layer.transform = transform
-        } else {
-            logoImageView.layer.transform = CATransform3DIdentity
-        }
-    }
-}
+//
+//extension ScannerViewController: UIScrollViewDelegate {
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let offset = scrollView.contentOffset
+//
+//        if offset.y < 0.0 {
+//            var transform = CATransform3DTranslate(CATransform3DIdentity, 0, offset.y, 0)
+//            let scaleFactor = 1 + (-1 * offset.y / (logoImageView.frame.height / 2))
+//            transform = CATransform3DScale(transform, scaleFactor, scaleFactor, 1)
+//            logoImageView.layer.transform = transform
+//        } else {
+//            logoImageView.layer.transform = CATransform3DIdentity
+//        }
+//    }
+//}
 

@@ -11,25 +11,20 @@ class IngredientDetailViewController: UIViewController {
     
     var ingredient: Ingredient?
     
-    //
-    //    private lazy var scrollView: UIScrollView = {
-    //        let scroll = UIScrollView()
-    //        scroll.contentInsetAdjustmentBehavior = .never
-    //        scroll.frame = self.view.bounds
-    //        scroll.contentSize = contentSize
-    //        return scroll
-    //    }()
+        private lazy var scrollView: UIScrollView = {
+            let scroll = UIScrollView()
+            scroll.showsVerticalScrollIndicator = false
+            scroll.translatesAutoresizingMaskIntoConstraints = false
+            return scroll
+        }()
     
-    //    private lazy var contentView: UIView = {
-    //        let contentView = UIView()
-    //        contentView.backgroundColor = .clear
-    //        contentView.frame.size = contentSize
-    //        return contentView
-    //    }()
-    //
-    //    private var contentSize: CGSize {
-    //        CGSize(width: view.frame.width, height: view.frame.height + 1)
-    //    }
+        private lazy var contentView: UIView = {
+            let contentView = UIView()
+            contentView.backgroundColor = .clear
+            contentView.translatesAutoresizingMaskIntoConstraints = false
+            return contentView
+        }()
+    
     
     private lazy var effectsCollectionView = EffectsCollectionView()
     
@@ -130,8 +125,6 @@ class IngredientDetailViewController: UIViewController {
     private lazy var naturalityStackView = UIStackView()
     private lazy var naturalityTitleStackView = UIStackView()
     private lazy var factorsBlockStackView = UIStackView()
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,15 +137,15 @@ class IngredientDetailViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .specialBackground
+        view.addSubview(scrollView)
         view.addSubview(slideIndicator)
-        view.addSubview(ingredientImageView)
-        view.addSubview(namesStackView)
-        view.addSubview(effectsCollectionView)
-        view.addSubview(factorsBlockStackView)
-        view.addSubview(descriptionLabel)
-        //        view.addSubview(scrollView)
-        //        scrollView.addSubview(contentView)
-        //        contentView.addSubview(ingredientImageView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(ingredientImageView)
+        contentView.addSubview(namesStackView)
+        contentView.addSubview(effectsCollectionView)
+        contentView.addSubview(factorsBlockStackView)
+        contentView.addSubview(descriptionLabel)
+        
     }
     
     private func setDetails() {
@@ -195,6 +188,20 @@ extension IngredientDetailViewController {
     private func setConstraints() {
         
         NSLayoutConstraint.activate([
+            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scrollView.topAnchor.constraint(equalTo: slideIndicator.bottomAnchor, constant: 16),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
             slideIndicator.topAnchor.constraint(equalTo: view.topAnchor, constant: 12),
             slideIndicator.heightAnchor.constraint(equalToConstant: 4),
             slideIndicator.widthAnchor.constraint(equalToConstant: 100),
@@ -202,22 +209,22 @@ extension IngredientDetailViewController {
         ])
         
         NSLayoutConstraint.activate([
-            ingredientImageView.topAnchor.constraint(equalTo: slideIndicator.bottomAnchor, constant: 24),
-            ingredientImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            ingredientImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            ingredientImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             ingredientImageView.heightAnchor.constraint(equalToConstant: 150),
             ingredientImageView.widthAnchor.constraint(equalToConstant: 150)
         ])
         
         NSLayoutConstraint.activate([
             namesStackView.topAnchor.constraint(equalTo: ingredientImageView.bottomAnchor, constant: 8),
-            namesStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            namesStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            namesStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            namesStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
         ])
         
         NSLayoutConstraint.activate([
             effectsCollectionView.topAnchor.constraint(equalTo: namesStackView.bottomAnchor, constant: 16),
-            effectsCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            effectsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            effectsCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            effectsCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             effectsCollectionView.heightAnchor.constraint(equalToConstant: 40)
         ])
         
@@ -233,14 +240,15 @@ extension IngredientDetailViewController {
         
         NSLayoutConstraint.activate([
             factorsBlockStackView.topAnchor.constraint(equalTo: effectsCollectionView.bottomAnchor, constant: 16),
-            factorsBlockStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            factorsBlockStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+            factorsBlockStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            factorsBlockStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32)
         ])
         
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: factorsBlockStackView.bottomAnchor, constant: 16),
-            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -8)
         ])
     }
 }
