@@ -43,6 +43,42 @@ class ScannerViewController: UIViewController {
 //        return imageView
 //    }()
     
+    private lazy var scanImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.image = UIImage(named: "scan")
+        imageView.addShadowOnTextView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private lazy var scanTitleLabel: UILabel = {
+       let label = UILabel()
+        label.font = .systemFont(ofSize: 16)
+        label.text = "Отсканируй состав с этикетки или используй фото/скрин"
+        label.numberOfLines = 0
+        label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var copyImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.image = UIImage(named: "compound")
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private lazy var copyTitleLabel: UILabel = {
+       let label = UILabel()
+        label.font = .systemFont(ofSize: 16)
+        label.text = "Скопируй состав и вставь в форму ниже"
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private lazy var viewUnderText: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -60,7 +96,6 @@ class ScannerViewController: UIViewController {
     
     private lazy var analyzeButton = CustomButton(title: "Анализировать состав", target: self, action: #selector(analyzeButtonTapped))
     
-    
     //    private lazy var scanButton: UIButton = {
     //        let button = UIButton(type: .system)
     //        button.backgroundColor = .specialButton
@@ -74,6 +109,9 @@ class ScannerViewController: UIViewController {
     //        return button
     //    }()
     
+    private lazy var scanInfoStackView = UIStackView()
+    private lazy var copyInfoStackView = UIStackView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadJson()
@@ -84,6 +122,8 @@ class ScannerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         self.hideKeyboardWhenTappedAround()
+        
+        setupStackViews()
         setupViews()
         setupNavBar()
         setConstraints()
@@ -102,20 +142,33 @@ class ScannerViewController: UIViewController {
 //        view.addSubview(scrollView)
 //        scrollView.addSubview(contentView)
 //        contentView.addSubview(logoImageView)
+        view.addSubview(scanInfoStackView)
+        view.addSubview(copyInfoStackView)
         view.addSubview(viewUnderText)
         view.addSubview(ingredientsTextView)
         view.addSubview(scanButton)
         view.addSubview(analyzeButton)
     }
     
+    private func setupStackViews() {
+        scanInfoStackView = UIStackView(arrangedSubviews: [scanImageView, scanTitleLabel], axis: .horizontal, aligment: .center, distribution: .fill, spacing: 16)
+        copyInfoStackView = UIStackView(arrangedSubviews: [copyImageView, copyTitleLabel], axis: .vertical, aligment: .center, distribution: .fill, spacing: 8)
+    }
+    
     private func setupNavBar() {
 //        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 //        self.navigationController?.navigationBar.shadowImage = UIImage()
 //        self.navigationController?.navigationBar.isTranslucent = true
-//        self.navigationController?.view.backgroundColor = UIColor.clear
+//        self.navigationController?.view.backgroundColor = .specialButton
         navigationItem.title = "Beauty Helper"
-        let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 18)]
-        self.navigationController?.navigationBar.titleTextAttributes = attributes
+//        let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 18)]
+//        self.navigationController?.navigationBar.titleTextAttributes = attributes
+        
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.backgroundColor = .specialButton
+        self.navigationController?.navigationBar.standardAppearance = navBarAppearance
+        self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
 
     }
     
@@ -221,10 +274,26 @@ extension ScannerViewController {
 //        ])
         
         NSLayoutConstraint.activate([
-            scanButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            scanInfoStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            scanInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+            scanInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            scanImageView.heightAnchor.constraint(equalToConstant: 100),
+            scanImageView.widthAnchor.constraint(equalToConstant: 100)
+        ])
+        
+        NSLayoutConstraint.activate([
+            scanButton.topAnchor.constraint(equalTo: scanInfoStackView.bottomAnchor, constant: 16),
             scanButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             scanButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             scanButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        NSLayoutConstraint.activate([
+            copyInfoStackView.topAnchor.constraint(equalTo: scanButton.bottomAnchor, constant: 16),
+            copyInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+            copyInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            copyImageView.heightAnchor.constraint(equalToConstant: 120),
+            copyImageView.widthAnchor.constraint(equalToConstant: 350)
         ])
         
         NSLayoutConstraint.activate([
@@ -235,7 +304,7 @@ extension ScannerViewController {
         ])
         
         NSLayoutConstraint.activate([
-            ingredientsTextView.topAnchor.constraint(equalTo: scanButton.bottomAnchor, constant: 16),
+            ingredientsTextView.topAnchor.constraint(equalTo: copyInfoStackView.bottomAnchor, constant: 16),
             ingredientsTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
             ingredientsTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             ingredientsTextView.heightAnchor.constraint(equalToConstant: 200)
@@ -257,7 +326,7 @@ extension ScannerViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         //        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
         if self.view.frame.origin.y == 0 {
-            self.view.frame.origin.y -= 150
+            self.view.frame.origin.y -= 250
             //            }
         }
     }
