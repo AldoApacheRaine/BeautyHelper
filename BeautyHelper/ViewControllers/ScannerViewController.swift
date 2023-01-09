@@ -134,7 +134,13 @@ class ScannerViewController: UIViewController {
         ingredientsTextView.text = "Введите компоненты через запятую"
         ingredientsTextView.textColor = .lightGray
         productIngredients = []
-        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let navController = self.tabBarController?.viewControllers?[1] as? UINavigationController
+        let vc = navController?.topViewController as? SearchViewController
+        vc?.ingredients = ingredientsDB
     }
     
     private func setupViews() {
@@ -156,23 +162,13 @@ class ScannerViewController: UIViewController {
     }
     
     private func setupNavBar() {
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
-//        self.navigationController?.navigationBar.isTranslucent = true
-//        self.navigationController?.view.backgroundColor = .specialButton
         navigationItem.title = "Beauty Helper"
-//        let attributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Light", size: 18)]
-//        self.navigationController?.navigationBar.titleTextAttributes = attributes
-        
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.backgroundColor = .specialButton
+        navBarAppearance.backgroundColor = .SpecialTabBar
         self.navigationController?.navigationBar.standardAppearance = navBarAppearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-
-    }
-    
-    
+    }    
     
     @objc private func scanButtonTapped(_ sender: UIButton) {
         self.imagePicker?.present(from: sender)
@@ -227,7 +223,7 @@ class ScannerViewController: UIViewController {
             print("Компонент из фото, текста - \(component)")
             productIngredients.append(contentsOf: filterdItemsArray)
         }
-        let ingredientsVC = ProductIngredientsViewController()
+        let ingredientsVC = IngredientsViewController()
         ingredientsVC.ingredients = productIngredients
         navigationController?.pushViewController(ingredientsVC, animated: true)
     }

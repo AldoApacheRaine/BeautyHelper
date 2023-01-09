@@ -21,4 +21,5 @@ extension UIColor {
     static let specialAverage = #colorLiteral(red: 1, green: 0.9450980392, blue: 0.6470588235, alpha: 1)
     static let specialPoor = #colorLiteral(red: 1, green: 0.7960784314, blue: 0.6470588235, alpha: 1)
     static let specialCell = #colorLiteral(red: 0.994353354, green: 0.8618287444, blue: 0.8859904408, alpha: 1)
+    static let nudePink = #colorLiteral(red: 1, green: 0.8067806363, blue: 0.8371481299, alpha: 1)
 }
