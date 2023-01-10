@@ -47,6 +47,5 @@ extension EffectCollectionViewCell {
             effectNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             effectNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
-
     }
 }

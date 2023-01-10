@@ -12,6 +12,15 @@ class SearchViewController: UIViewController {
     var ingredients: [Ingredient] = []
     private var filteredIngredients: [Ingredient] = []
     
+    private lazy var searchImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.image = UIImage(named: "search")
+        imageView.contentMode = .scaleAspectFit
+        imageView.addShadowOnTextView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     lazy var searchController = UISearchController(searchResultsController: IngredientsViewController())
 
     override func viewDidLoad() {
@@ -21,11 +30,18 @@ class SearchViewController: UIViewController {
         searchController.searchBar.placeholder = "Введите название ингредиента"
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
+        setupViews()
+        setConstraints()
+    }
+    
+    private func setupViews() {
         view.backgroundColor = .specialBackground
+        view.addSubview(searchImageView)
     }
 }
 
 // MARK: - UISearchResultsUpdating
+
 extension SearchViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -45,5 +61,14 @@ extension SearchViewController: UISearchResultsUpdating {
         ingredientsVC.ingredients = filteredIngredients
         ingredientsVC.ingredientsTableView.reloadData()
         ingredientsVC.ingredientsTableView.keyboardDismissMode = .onDrag
+    }
+}
+
+extension SearchViewController {
+    private func setConstraints() {
+        NSLayoutConstraint.activate([
+            searchImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            searchImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
 }

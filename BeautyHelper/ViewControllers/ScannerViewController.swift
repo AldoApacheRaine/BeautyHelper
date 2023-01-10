@@ -66,6 +66,7 @@ class ScannerViewController: UIViewController {
        let imageView = UIImageView()
         imageView.image = UIImage(named: "compound")
         imageView.contentMode = .scaleAspectFit
+        imageView.addShadowOnTextView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -74,7 +75,8 @@ class ScannerViewController: UIViewController {
        let label = UILabel()
         label.font = .systemFont(ofSize: 16)
         label.text = "Скопируй состав и вставь в форму ниже"
-        label.textAlignment = .center
+        label.textAlignment = .left
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -158,7 +160,7 @@ class ScannerViewController: UIViewController {
     
     private func setupStackViews() {
         scanInfoStackView = UIStackView(arrangedSubviews: [scanImageView, scanTitleLabel], axis: .horizontal, aligment: .center, distribution: .fill, spacing: 16)
-        copyInfoStackView = UIStackView(arrangedSubviews: [copyImageView, copyTitleLabel], axis: .vertical, aligment: .center, distribution: .fill, spacing: 8)
+        copyInfoStackView = UIStackView(arrangedSubviews: [copyImageView, copyTitleLabel], axis: .horizontal, aligment: .center, distribution: .fill, spacing: 16)
     }
     
     private func setupNavBar() {
@@ -288,8 +290,8 @@ extension ScannerViewController {
             copyInfoStackView.topAnchor.constraint(equalTo: scanButton.bottomAnchor, constant: 16),
             copyInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
             copyInfoStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            copyImageView.heightAnchor.constraint(equalToConstant: 120),
-            copyImageView.widthAnchor.constraint(equalToConstant: 350)
+            copyImageView.heightAnchor.constraint(equalToConstant: 100),
+            copyImageView.widthAnchor.constraint(equalToConstant: 100)
         ])
         
         NSLayoutConstraint.activate([
@@ -322,7 +324,7 @@ extension ScannerViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         //        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
         if self.view.frame.origin.y == 0 {
-            self.view.frame.origin.y -= 250
+            self.view.frame.origin.y -= 180
             //            }
         }
     }

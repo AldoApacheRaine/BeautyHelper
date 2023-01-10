@@ -11,19 +11,19 @@ class IngredientDetailViewController: UIViewController {
     
     var ingredient: Ingredient?
     
-        private lazy var scrollView: UIScrollView = {
-            let scroll = UIScrollView()
-            scroll.showsVerticalScrollIndicator = false
-            scroll.translatesAutoresizingMaskIntoConstraints = false
-            return scroll
-        }()
+    private lazy var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.showsVerticalScrollIndicator = false
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        return scroll
+    }()
     
-        private lazy var contentView: UIView = {
-            let contentView = UIView()
-            contentView.backgroundColor = .clear
-            contentView.translatesAutoresizingMaskIntoConstraints = false
-            return contentView
-        }()
+    private lazy var contentView: UIView = {
+        let contentView = UIView()
+        contentView.backgroundColor = .clear
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        return contentView
+    }()
     
     
     private lazy var effectsCollectionView = EffectsCollectionView()
