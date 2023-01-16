@@ -27,14 +27,14 @@ class MainTabBarController: UITabBarController {
     private func setupItems() {
         let scannerVC = UINavigationController(rootViewController: ScannerViewController())
         let searchVC = UINavigationController(rootViewController: SearchViewController())
-        let favoritesVC = UINavigationController(rootViewController: FavoritesViewController())
+        let historyVC = UINavigationController(rootViewController: HistoryViewController())
         
-        setViewControllers([scannerVC, searchVC, favoritesVC], animated: true)
+        setViewControllers([scannerVC, searchVC, historyVC], animated: true)
         
         guard let items = tabBar.items else { return }
         items[0].title = "Сканер"
         items[1].title = "Поиск"
-        items[2].title = "Избранное"
+        items[2].title = "История"
         
         items[0].image = UIImage(systemName: "viewfinder.circle")
         items[1].image = UIImage(systemName: "magnifyingglass.circle")

@@ -10,6 +10,8 @@ import Vision
 
 class ScannerViewController: UIViewController {
     
+    var products: [Product] = []
+    
     var imagePicker: ImagePicker?
     
     var ingredientsDB: [Ingredient] = []
@@ -140,9 +142,13 @@ class ScannerViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        let navController = self.tabBarController?.viewControllers?[1] as? UINavigationController
-        let vc = navController?.topViewController as? SearchViewController
-        vc?.ingredients = ingredientsDB
+        let navSearchController = self.tabBarController?.viewControllers?[1] as? UINavigationController
+        let searchVC = navSearchController?.topViewController as? SearchViewController
+        searchVC?.ingredients = ingredientsDB
+        
+        let navHistoryController = self.tabBarController?.viewControllers?[2] as? UINavigationController
+        let historyVC = navHistoryController?.topViewController as? HistoryViewController
+        historyVC?.ingredients = ingredientsDB
     }
     
     private func setupViews() {
@@ -225,9 +231,23 @@ class ScannerViewController: UIViewController {
             print("Компонент из фото, текста - \(component)")
             productIngredients.append(contentsOf: filterdItemsArray)
         }
-        let ingredientsVC = IngredientsViewController()
-        ingredientsVC.ingredients = productIngredients
-        navigationController?.pushViewController(ingredientsVC, animated: true)
+        if !productIngredients.isEmpty {
+            saveProduct("Product", Date(), productIngredients.map{$0.inciName})
+            
+            let ingredientsVC = IngredientsViewController()
+            ingredientsVC.ingredients = productIngredients
+            navigationController?.pushViewController(ingredientsVC, animated: true)
+        } else {
+            print("Компоненты не найдены")
+        }
+    }
+    
+    func saveProduct(_ name: String, _ date: Date, _ ingredients: [String]) {
+        let productObject = Product()
+        productObject.name = name
+        productObject.date = date
+        productObject.ingredients = ingredients
+        CoreDataManager.shared.saveContext()
     }
 }
     
@@ -335,7 +355,6 @@ extension ScannerViewController {
         }
     }
 }
-
 
 // MARK: - UIScrollViewDelegate
 //
