@@ -37,6 +37,7 @@
 		ECC479FC293677AD00A0155F /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC479FB293677AD00A0155F /* String + Extension.swift */; };
 		ECCE2BB2295227E7001C4A28 /* ingredientDBNew.json in Resources */ = {isa = PBXBuildFile; fileRef = ECCE2BB1295227E7001C4A28 /* ingredientDBNew.json */; };
 		ECDE3A1C294268B000841CFB /* IngredientDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE3A1B294268B000841CFB /* IngredientDetailViewController.swift */; };
+		ECFC04392977158900C0D028 /* ProductHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFC04382977158900C0D028 /* ProductHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		ECCE2BB1295227E7001C4A28 /* ingredientDBNew.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ingredientDBNew.json; sourceTree = "<group>"; };
 		ECD79B33296C9D2E00F325F3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		ECDE3A1B294268B000841CFB /* IngredientDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetailViewController.swift; sourceTree = "<group>"; };
+		ECFC04382977158900C0D028 /* ProductHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 				EC9726692935371B0034B6D2 /* IngredientTableViewCell.swift */,
 				ECB0FF60294A2C52007E7A64 /* EffectCollectionViewCell.swift */,
 				ECB9EF7D2975B8A400495F81 /* HistoryTableViewCell.swift */,
+				ECFC04382977158900C0D028 /* ProductHeaderView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				ECB0FF61294A2C52007E7A64 /* EffectCollectionViewCell.swift in Sources */,
 				EC8D2477292BEA6D009F1C30 /* SceneDelegate.swift in Sources */,
 				ECB9EF932975C18400495F81 /* Product+CoreDataProperties.swift in Sources */,
+				ECFC04392977158900C0D028 /* ProductHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

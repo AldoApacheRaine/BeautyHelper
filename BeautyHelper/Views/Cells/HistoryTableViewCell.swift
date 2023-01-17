@@ -45,13 +45,13 @@ class HistoryTableViewCell: UITableViewCell {
         addSubview(dateLabel)
     }
     
-    public func cellConfigure(_ name: String, _ date: Date) {
+    public func cellConfigure(_ name: String, _ date: Date, _ indexPath: IndexPath) {
         let date = date
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         let dateString = dateFormatter.string(from: date as Date)
         
-        nameLabel.text = name
+        nameLabel.text = name + " № \(String(indexPath.row + 1))"
         dateLabel.text = dateString
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 class IngredientsViewController: UIViewController {
     
     lazy var ingredientsTableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -18,6 +18,7 @@ class IngredientsViewController: UIViewController {
     }()
     
     var ingredients: [Ingredient] = []
+    var product: Product?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,7 @@ class IngredientsViewController: UIViewController {
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
         ingredientsTableView.register(IngredientTableViewCell.self)
+        ingredientsTableView.registerHeader(ProductHeaderView.self)
     }
 }
 
@@ -43,6 +45,16 @@ class IngredientsViewController: UIViewController {
 
 extension IngredientsViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return product != nil ? 200 : 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard product != nil else { return nil }
+        let header = tableView.dequeueReusableHeader(ProductHeaderView.self)
+        header?.configureHeader(product?.name ?? "nil")
+        return header
+    }
 }
 
 // MARK: - UITableViewDataSource

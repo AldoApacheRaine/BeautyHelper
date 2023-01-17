@@ -64,7 +64,7 @@ extension HistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(HistoryTableViewCell.self) {
             let product = products[indexPath.row]
-            cell.cellConfigure(product.name ?? "Default", product.date ?? Date())
+            cell.cellConfigure(product.name ?? "Default", product.date ?? Date(), indexPath)
             return cell
         }
         return UITableViewCell()
@@ -80,6 +80,7 @@ extension HistoryViewController: UITableViewDataSource {
         
         let ingredientsVC = IngredientsViewController()
         ingredientsVC.ingredients = filterIngredients
+        ingredientsVC.product = product
         navigationController?.pushViewController(ingredientsVC, animated: true)
     }
     
