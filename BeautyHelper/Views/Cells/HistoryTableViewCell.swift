@@ -8,6 +8,16 @@
 import UIKit
 
 class HistoryTableViewCell: UITableViewCell {
+    
+    private lazy var productImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "product")
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
         
     private lazy var nameLabel: UILabel = {
        let label = UILabel()
@@ -39,17 +49,28 @@ class HistoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        productImageView.image = UIImage(named: "product")
+    }
+    
     private func setupViews() {
         backgroundColor = .clear
+        addSubview(productImageView)
         addSubview(nameLabel)
         addSubview(dateLabel)
     }
     
-    public func cellConfigure(_ name: String, _ date: Date, _ indexPath: IndexPath) {
+    public func cellConfigure(_ name: String, _ date: Date,_ imageData: Data?, _ indexPath: IndexPath) {
         let date = date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         let dateString = dateFormatter.string(from: date as Date)
+        
+        if let imageData = imageData {
+            let image = UIImage(data: imageData)
+            productImageView.image = image
+        }
         
         nameLabel.text = name + " № \(String(indexPath.row + 1))"
         dateLabel.text = dateString
@@ -62,10 +83,17 @@ extension HistoryTableViewCell {
     private func setConstraints() {
         
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 6),
-            nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -6),
-            nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            nameLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5),
+            productImageView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            productImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
+            productImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            productImageView.heightAnchor.constraint(equalToConstant: 50),
+            productImageView.widthAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        NSLayoutConstraint.activate([
+            nameLabel.centerYAnchor.constraint(equalTo: productImageView.centerYAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 8),
+            nameLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7)
         ])
             
         NSLayoutConstraint.activate([

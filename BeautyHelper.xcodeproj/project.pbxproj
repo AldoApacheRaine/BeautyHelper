@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC0A455429785DFE002ECD62 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0A455229785DFE002ECD62 /* Product+CoreDataClass.swift */; };
+		EC0A455529785DFE002ECD62 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0A455329785DFE002ECD62 /* Product+CoreDataProperties.swift */; };
 		EC8D2475292BEA6D009F1C30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D2474292BEA6D009F1C30 /* AppDelegate.swift */; };
 		EC8D2477292BEA6D009F1C30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D2476292BEA6D009F1C30 /* SceneDelegate.swift */; };
 		EC8D2479292BEA6D009F1C30 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D2478292BEA6D009F1C30 /* MainTabBarController.swift */; };
@@ -32,8 +34,6 @@
 		ECB9EF7C2975B79400495F81 /* History.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ECB9EF7A2975B79400495F81 /* History.xcdatamodeld */; };
 		ECB9EF7E2975B8A400495F81 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB9EF7D2975B8A400495F81 /* HistoryTableViewCell.swift */; };
 		ECB9EF8A2975BF6E00495F81 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB9EF892975BF6E00495F81 /* CoreDataManager.swift */; };
-		ECB9EF922975C18400495F81 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB9EF902975C18400495F81 /* Product+CoreDataClass.swift */; };
-		ECB9EF932975C18400495F81 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB9EF912975C18400495F81 /* Product+CoreDataProperties.swift */; };
 		ECC479FC293677AD00A0155F /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC479FB293677AD00A0155F /* String + Extension.swift */; };
 		ECCE2BB2295227E7001C4A28 /* ingredientDBNew.json in Resources */ = {isa = PBXBuildFile; fileRef = ECCE2BB1295227E7001C4A28 /* ingredientDBNew.json */; };
 		ECDE3A1C294268B000841CFB /* IngredientDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDE3A1B294268B000841CFB /* IngredientDetailViewController.swift */; };
@@ -41,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC0A455229785DFE002ECD62 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EC0A455329785DFE002ECD62 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EC8D2471292BEA6D009F1C30 /* BeautyHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeautyHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8D2474292BEA6D009F1C30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC8D2476292BEA6D009F1C30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,8 +70,6 @@
 		ECB9EF7B2975B79400495F81 /* History.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = History.xcdatamodel; sourceTree = "<group>"; };
 		ECB9EF7D2975B8A400495F81 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		ECB9EF892975BF6E00495F81 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		ECB9EF902975C18400495F81 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
-		ECB9EF912975C18400495F81 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ECC479FB293677AD00A0155F /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		ECCE2BB1295227E7001C4A28 /* ingredientDBNew.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ingredientDBNew.json; sourceTree = "<group>"; };
 		ECD79B33296C9D2E00F325F3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -217,8 +217,8 @@
 		ECB9EF942975C19000495F81 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				ECB9EF902975C18400495F81 /* Product+CoreDataClass.swift */,
-				ECB9EF912975C18400495F81 /* Product+CoreDataProperties.swift */,
+				EC0A455229785DFE002ECD62 /* Product+CoreDataClass.swift */,
+				EC0A455329785DFE002ECD62 /* Product+CoreDataProperties.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -300,11 +300,12 @@
 				EC9B0E0B292FDD57002DF9F0 /* UIScreen + Extension.swift in Sources */,
 				EC8D2479292BEA6D009F1C30 /* MainTabBarController.swift in Sources */,
 				EC8D2494292BEE12009F1C30 /* HistoryViewController.swift in Sources */,
+				EC0A455429785DFE002ECD62 /* Product+CoreDataClass.swift in Sources */,
 				EC9B0E0E292FE3E4002DF9F0 /* IngredientsModel.swift in Sources */,
 				ECDE3A1C294268B000841CFB /* IngredientDetailViewController.swift in Sources */,
-				ECB9EF922975C18400495F81 /* Product+CoreDataClass.swift in Sources */,
 				ECA42D56293926B700177734 /* Buttons.swift in Sources */,
 				EC97266C293537EE0034B6D2 /* UITableView + Extension.swift in Sources */,
+				EC0A455529785DFE002ECD62 /* Product+CoreDataProperties.swift in Sources */,
 				ECB0FF5F294A2AAF007E7A64 /* EffectsCollectionView.swift in Sources */,
 				EC8D248E292BED64009F1C30 /* UIColor + Extension.swift in Sources */,
 				EC972668293534EB0034B6D2 /* IngredientsViewController.swift in Sources */,
@@ -321,7 +322,6 @@
 				EC8D2490292BEDB8009F1C30 /* ScannerViewController.swift in Sources */,
 				ECB0FF61294A2C52007E7A64 /* EffectCollectionViewCell.swift in Sources */,
 				EC8D2477292BEA6D009F1C30 /* SceneDelegate.swift in Sources */,
-				ECB9EF932975C18400495F81 /* Product+CoreDataProperties.swift in Sources */,
 				ECFC04392977158900C0D028 /* ProductHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,14 +8,13 @@
 import UIKit
 
 class ProductHeaderView: UITableViewHeaderFooterView {
-    
-    static let identifier = "ProductHeaderView"
-    
+        
     private lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "product")
         imageView.contentMode = .scaleAspectFit
-        //        imageView.addShadowOnTextView()
+        imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -44,13 +43,12 @@ class ProductHeaderView: UITableViewHeaderFooterView {
         addSubview(productTitleLabel)
     }
     
-    func configureHeader(_ productName: String) {
+    func configureHeader(_ productName: String, _ productImage: Data?) {
         productTitleLabel.text = productName
-//        if productImage != nil {
-//            productImageView.image = productImage
-//        }
+        if let productImage = productImage {
+            productImageView.image = UIImage(data: productImage)
+        }
     }
-    
 }
 
 // MARK: - SetConstraints

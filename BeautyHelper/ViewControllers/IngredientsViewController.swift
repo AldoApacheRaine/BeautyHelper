@@ -52,7 +52,7 @@ extension IngredientsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard product != nil else { return nil }
         let header = tableView.dequeueReusableHeader(ProductHeaderView.self)
-        header?.configureHeader(product?.name ?? "nil")
+        header?.configureHeader(product?.name ?? "nil", product?.image)
         return header
     }
 }

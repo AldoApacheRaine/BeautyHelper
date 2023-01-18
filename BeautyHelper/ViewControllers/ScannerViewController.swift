@@ -184,7 +184,7 @@ class ScannerViewController: UIViewController {
     
     @objc private func analyzeButtonTapped(_ sender: UIButton) {
         print("Анализирую")
-        compareComponents(ingredientsTextView.text.stringToComponents(), ingredientsDB)
+        compareComponents(ingredientsTextView.text.stringToComponents(), ingredientsDB, nil)
     }
 
     func loadJson() {
@@ -214,7 +214,7 @@ class ScannerViewController: UIViewController {
             
             DispatchQueue.main.async { [weak self] in
                 guard let ingredients = self?.ingredientsDB else { return }
-                self?.compareComponents(text.stringToComponents(), ingredients)
+                self?.compareComponents(text.stringToComponents(), ingredients, image)
             }
         }
         do {
@@ -225,14 +225,14 @@ class ScannerViewController: UIViewController {
         }
     }
     
-    private func compareComponents(_ productComponents: [String], _ ingredientsDB: [Ingredient]) {
+    private func compareComponents(_ productComponents: [String], _ ingredientsDB: [Ingredient],_ productImage: UIImage?) {
         for component in productComponents {
             let filterdItemsArray = ingredientsDB.filter { $0.inciName.uppercased() == component.uppercased() }
             print("Компонент из фото, текста - \(component)")
             productIngredients.append(contentsOf: filterdItemsArray)
         }
         if !productIngredients.isEmpty {
-            saveProduct("Product", Date(), productIngredients.map{$0.inciName})
+            saveProduct("Продукт", productIngredients.map { $0.inciName }, productImage)
             
             let ingredientsVC = IngredientsViewController()
             ingredientsVC.ingredients = productIngredients
@@ -242,10 +242,14 @@ class ScannerViewController: UIViewController {
         }
     }
     
-    func saveProduct(_ name: String, _ date: Date, _ ingredients: [String]) {
+    func saveProduct(_ name: String, _ ingredients: [String], _ productImage: UIImage?) {
         let productObject = Product()
+        if let productImage = productImage {
+            let imageData = productImage.jpegData(compressionQuality: 0.5)
+            productObject.image = imageData
+        }
         productObject.name = name
-        productObject.date = date
+        productObject.date = Date()
         productObject.ingredients = ingredients
         CoreDataManager.shared.saveContext()
     }

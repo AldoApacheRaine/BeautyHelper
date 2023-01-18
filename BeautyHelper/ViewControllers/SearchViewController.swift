@@ -26,7 +26,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        self.title = "Поиск ингредиента"
+        navigationItem.title = "Поиск ингредиента"
         searchController.searchBar.placeholder = "Введите название ингредиента"
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController

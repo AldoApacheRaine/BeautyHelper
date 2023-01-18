@@ -2,7 +2,7 @@
 //  Product+CoreDataProperties.swift
 //  BeautyHelper
 //
-//  Created by Максим Хмелев on 16.01.2023.
+//  Created by Максим Хмелев on 18.01.2023.
 //
 //
 
@@ -17,8 +17,9 @@ extension Product {
     }
 
     @NSManaged public var date: Date?
-    @NSManaged public var name: String?
     @NSManaged public var ingredients: [String]?
+    @NSManaged public var name: String?
+    @NSManaged public var image: Data?
 
 }
 
