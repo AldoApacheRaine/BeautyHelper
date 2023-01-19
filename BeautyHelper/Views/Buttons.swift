@@ -19,6 +19,17 @@ class CustomButton: UIButton {
         addTarget(target, action: action, for: .touchUpInside)
         translatesAutoresizingMaskIntoConstraints = false
     }
-
+}
+#warning("Переделать кнопку")
+class EditButton: UIButton {
+    convenience init(target: Any?, action: Selector, type: UIButton.ButtonType = .custom) {
+        self.init(type: type)
+//        backgroundColor = .clear
+//        tintColor = .clear
+        setImage(UIImage(named: "saveIcon"), for: .normal)
+        imageView?.contentMode = .scaleAspectFill
+        addTarget(target, action: action, for: .touchUpInside)
+        translatesAutoresizingMaskIntoConstraints = false
+    }
 }
 

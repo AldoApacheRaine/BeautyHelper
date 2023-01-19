@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC05C12A2979B07C006ADEFC /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC05C1292979B07C006ADEFC /* EditProductViewController.swift */; };
 		EC0A455429785DFE002ECD62 /* Product+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0A455229785DFE002ECD62 /* Product+CoreDataClass.swift */; };
 		EC0A455529785DFE002ECD62 /* Product+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0A455329785DFE002ECD62 /* Product+CoreDataProperties.swift */; };
 		EC8D2475292BEA6D009F1C30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8D2474292BEA6D009F1C30 /* AppDelegate.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC05C1292979B07C006ADEFC /* EditProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
 		EC0A455229785DFE002ECD62 /* Product+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EC0A455329785DFE002ECD62 /* Product+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EC8D2471292BEA6D009F1C30 /* BeautyHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeautyHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +141,7 @@
 				ECDE3A1B294268B000841CFB /* IngredientDetailViewController.swift */,
 				EC8D2491292BEDEC009F1C30 /* SearchViewController.swift */,
 				EC8D2493292BEE12009F1C30 /* HistoryViewController.swift */,
+				EC05C1292979B07C006ADEFC /* EditProductViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				EC8D2490292BEDB8009F1C30 /* ScannerViewController.swift in Sources */,
 				ECB0FF61294A2C52007E7A64 /* EffectCollectionViewCell.swift in Sources */,
 				EC8D2477292BEA6D009F1C30 /* SceneDelegate.swift in Sources */,
+				EC05C12A2979B07C006ADEFC /* EditProductViewController.swift in Sources */,
 				ECFC04392977158900C0D028 /* ProductHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

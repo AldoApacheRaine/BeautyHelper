@@ -22,10 +22,11 @@ class IngredientsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Результат анализа"
+        navigationItem.title = "Результат анализа"
         setupViews()
         setConstraints()
         setTableView()
+        setupBarButton()
     }
     
     private func setupViews() {
@@ -38,6 +39,19 @@ class IngredientsViewController: UIViewController {
         ingredientsTableView.dataSource = self
         ingredientsTableView.register(IngredientTableViewCell.self)
         ingredientsTableView.registerHeader(ProductHeaderView.self)
+    }
+    
+    private func setupBarButton() {
+        let editButton = UIBarButtonItem(image: UIImage(systemName: "pencil.circle"), style: .plain, target: self, action: #selector(editButtonTapped))
+        self.navigationItem.rightBarButtonItem = editButton
+    }
+    
+    @objc private func editButtonTapped(_ sender: UIBarButtonItem) {
+        print("Изменить продукт")
+        let editVC = EditProductViewController()
+        editVC.product = product
+        editVC.modalPresentationStyle = .automatic
+        self.present(editVC, animated: true, completion: nil)
     }
 }
 

@@ -32,13 +32,27 @@ class CoreDataManager {
         return products
     }
     
-    func delete(_ product : Product){
+    func delete(_ product: Product){
         let managedContext = persistentContainer.viewContext
         managedContext.delete(product)
         do {
             try managedContext.save()
         } catch {
             print(error.localizedDescription)
+        }
+    }
+    
+    func update(_ name: String, _ image: Data, _ product: Product ) {
+        let managedContext = persistentContainer.viewContext
+        
+        product.setValue(name, forKey: "name")
+        product.setValue(image, forKey: "image")
+        
+        do {
+            try managedContext.save()
+            print("saved!")
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
         }
     }
     
