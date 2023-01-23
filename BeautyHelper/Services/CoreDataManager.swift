@@ -25,7 +25,7 @@ class CoreDataManager {
         var products = [Product]()
         let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
         do {
-            products = try CoreDataManager.shared.context.fetch(fetchRequest)
+            products = try context.fetch(fetchRequest)
         } catch let error as NSError {
             print(error.localizedDescription)
         }
@@ -33,24 +33,20 @@ class CoreDataManager {
     }
     
     func delete(_ product: Product){
-        let managedContext = persistentContainer.viewContext
-        managedContext.delete(product)
+        context.delete(product)
         do {
-            try managedContext.save()
+            try context.save()
         } catch {
             print(error.localizedDescription)
         }
     }
     
     func update(_ name: String, _ image: Data, _ product: Product ) {
-        let managedContext = persistentContainer.viewContext
-        
         product.setValue(name, forKey: "name")
         product.setValue(image, forKey: "image")
         
         do {
-            try managedContext.save()
-            print("saved!")
+            try context.save()
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
@@ -69,7 +65,6 @@ class CoreDataManager {
     // MARK: - Core Data Saving support
     
     func saveContext () {
-        let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
                 try context.save()

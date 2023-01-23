@@ -23,6 +23,7 @@ class ProductHeaderView: UITableViewHeaderFooterView {
        let label = UILabel()
         label.font = .systemFont(ofSize: 18)
         label.text = "Продукт из бд"
+        label.numberOfLines = 0
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

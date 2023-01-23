@@ -42,6 +42,7 @@ class EditProductViewController: UIViewController {
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         productNameTextField.delegate = self
         view.backgroundColor = .specialBackground
+        configure()
         setupViews()
         setupConstraints()
     }
@@ -49,26 +50,41 @@ class EditProductViewController: UIViewController {
     private func setupViews() {
         view.addSubview(productImageView)
         view.addSubview(editImageButton)
-        productNameTextField.placeholder = product?.name
         view.addSubview(productNameTextField)
         view.addSubview(saveButton)
+    }
+    
+    private func configure() {
+        productNameTextField.text = product?.name
+        if let data = product?.image {
+            productImageView.image = UIImage(data: data)
+        }
     }
     
     private func updateProduct() {
         guard let imageData = productImageView.image?.jpegData(compressionQuality: 0.5) else { return }
         guard let text = productNameTextField.text else { return }
-        if let product = product {
-            CoreDataManager.shared.update(text, imageData, product)
+        let count = text.filter { $0.isNumber || $0.isLetter }.count
+        if count != 0 {
+            if let product = product {
+                CoreDataManager.shared.update(text, imageData, product)
+                alertOk(title: "Сохранено", message: "Данные сохранены") {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateViews"), object: nil)
+                    self.dismiss(animated: true)
+                }
+            }
+        } else {
+            alertOkCancel(title: "Ошибка", message: "Введите название продукта") {
+                self.dismiss(animated: true)
+            }
         }
     }
     
     @objc private func editButtonTapped(_ sender: UIButton) {
         self.imagePicker?.present(from: sender)
-        print("Редактирование фото")
     }
     
     @objc private func saveButtonTapped(_ sender: UIButton) {
-        print("Сохранение")
         updateProduct()
     }
 }
@@ -87,7 +103,6 @@ extension EditProductViewController: ImagePickerDelegate {
 
 extension EditProductViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("Текст из поля: \(textField.text)")
         return productNameTextField.resignFirstResponder()
     }
 }

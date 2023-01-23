@@ -27,6 +27,7 @@ class IngredientsViewController: UIViewController {
         setConstraints()
         setTableView()
         setupBarButton()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateHeader), name: NSNotification.Name(rawValue:  "updateViews"), object: nil)
     }
     
     private func setupViews() {
@@ -47,11 +48,14 @@ class IngredientsViewController: UIViewController {
     }
     
     @objc private func editButtonTapped(_ sender: UIBarButtonItem) {
-        print("Изменить продукт")
         let editVC = EditProductViewController()
         editVC.product = product
         editVC.modalPresentationStyle = .automatic
         self.present(editVC, animated: true, completion: nil)
+    }
+    
+    @objc private func updateHeader() {
+        ingredientsTableView.reloadData()
     }
 }
 

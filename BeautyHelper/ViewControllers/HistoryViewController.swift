@@ -33,8 +33,7 @@ class HistoryViewController: UIViewController {
         products = CoreDataManager.shared.getSavedProducts()
         historyTableView.reloadData()
     }
-
-    
+  
     private func setupViews() {
         view.backgroundColor = .specialBackground
         view.addSubview(historyTableView)
@@ -44,13 +43,17 @@ class HistoryViewController: UIViewController {
         historyTableView.delegate = self
         historyTableView.dataSource = self
         historyTableView.register(HistoryTableViewCell.self)
+        historyTableView.estimatedRowHeight = 58
+        historyTableView.rowHeight = UITableView.automaticDimension
     }
 }
 
 // MARK: - UITableViewDelegate
 
 extension HistoryViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
 }
 
 // MARK: - UITableViewDataSource

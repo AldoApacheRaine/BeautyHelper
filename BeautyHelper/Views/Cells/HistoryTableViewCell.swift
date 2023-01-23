@@ -31,11 +31,12 @@ class HistoryTableViewCell: UITableViewCell {
     private lazy var dateLabel: UILabel = {
        let label = UILabel()
         label.font = .systemFont(ofSize: 16)
-        label.numberOfLines = 0
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    private lazy var labelsStackView = UIStackView()
     
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -57,8 +58,10 @@ class HistoryTableViewCell: UITableViewCell {
     private func setupViews() {
         backgroundColor = .clear
         addSubview(productImageView)
-        addSubview(nameLabel)
-        addSubview(dateLabel)
+        labelsStackView = UIStackView(arrangedSubviews: [nameLabel, dateLabel], axis: .horizontal, aligment: .fill, distribution: .fillEqually, spacing: 8)
+//        addSubview(nameLabel)
+//        addSubview(dateLabel)
+        addSubview(labelsStackView)
     }
     
     public func cellConfigure(_ name: String, _ date: Date,_ imageData: Data?, _ indexPath: IndexPath) {
@@ -76,6 +79,7 @@ class HistoryTableViewCell: UITableViewCell {
         dateLabel.text = dateString
     }
 }
+#warning("Разобраться с констрейнтами")
 
 // MARK: - Set Constraints
 
@@ -90,17 +94,24 @@ extension HistoryTableViewCell {
             productImageView.widthAnchor.constraint(equalToConstant: 50)
         ])
         
+//        NSLayoutConstraint.activate([
+//            nameLabel.centerYAnchor.constraint(equalTo: productImageView.centerYAnchor),
+//            nameLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 8),
+//            nameLabel.trailingAnchor.constraint(equalTo: dateLabel.leadingAnchor, constant: -8)
+//        ])
+//
+//        NSLayoutConstraint.activate([
+//            dateLabel.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor),
+//            dateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+//        ])
+        
         NSLayoutConstraint.activate([
-            nameLabel.centerYAnchor.constraint(equalTo: productImageView.centerYAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 8),
-            nameLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7)
+            labelsStackView.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 8),
+            labelsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+//            labelsStackView.centerYAnchor.constraint(equalTo: productImageView.centerYAnchor)
+            labelsStackView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            labelsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4)
         ])
-            
-        NSLayoutConstraint.activate([
-            dateLabel.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor),
-            dateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-        ])
-       
     }
 }
 
