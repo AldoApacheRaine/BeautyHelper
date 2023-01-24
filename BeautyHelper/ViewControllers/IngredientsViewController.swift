@@ -50,7 +50,8 @@ class IngredientsViewController: UIViewController {
     @objc private func editButtonTapped(_ sender: UIBarButtonItem) {
         let editVC = EditProductViewController()
         editVC.product = product
-        editVC.modalPresentationStyle = .automatic
+        editVC.modalPresentationStyle = .custom
+        editVC.transitioningDelegate = self
         self.present(editVC, animated: true, completion: nil)
     }
     
@@ -105,6 +106,14 @@ extension IngredientsViewController: UITableViewDataSource {
         slideVC.ingredient = ingredients[indexPath.row]
         slideVC.modalPresentationStyle = .automatic
         self.present(slideVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension IngredientsViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        PresentationViewController(presentedViewController: presented, presenting: presenting)
     }
 }
 

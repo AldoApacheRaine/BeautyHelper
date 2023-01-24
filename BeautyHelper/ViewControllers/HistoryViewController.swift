@@ -23,9 +23,10 @@ class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "История"
+        setTableView()
         setupViews()
         setConstraints()
-        setTableView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,17 +44,13 @@ class HistoryViewController: UIViewController {
         historyTableView.delegate = self
         historyTableView.dataSource = self
         historyTableView.register(HistoryTableViewCell.self)
-        historyTableView.estimatedRowHeight = 58
-        historyTableView.rowHeight = UITableView.automaticDimension
     }
 }
 
 // MARK: - UITableViewDelegate
 
 extension HistoryViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
-    }
+
 }
 
 // MARK: - UITableViewDataSource
@@ -67,7 +64,7 @@ extension HistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(HistoryTableViewCell.self) {
             let product = products[indexPath.row]
-            cell.cellConfigure(product.name ?? "Default", product.date ?? Date(), product.image, indexPath)
+            cell.cellConfigure(product.name ?? "Default", product.date ?? Date(), product.image)
             return cell
         }
         return UITableViewCell()
