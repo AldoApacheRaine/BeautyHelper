@@ -65,7 +65,7 @@ class IngredientsViewController: UIViewController {
 extension IngredientsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return product != nil ? 200 : 0
+        return product != nil ? UITableView.automaticDimension : 0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

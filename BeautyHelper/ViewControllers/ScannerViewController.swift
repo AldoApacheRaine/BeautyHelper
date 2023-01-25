@@ -122,9 +122,7 @@ class ScannerViewController: UIViewController {
         
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
 //        scrollView.delegate = self
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+
         self.hideKeyboardWhenTappedAround()
         
         setupStackViews()
@@ -135,6 +133,9 @@ class ScannerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         ingredientsTextView.text = "Введите компоненты через запятую"
         ingredientsTextView.textColor = .lightGray
         productIngredients = []
@@ -149,6 +150,8 @@ class ScannerViewController: UIViewController {
         let navHistoryController = self.tabBarController?.viewControllers?[2] as? UINavigationController
         let historyVC = navHistoryController?.topViewController as? HistoryViewController
         historyVC?.ingredients = ingredientsDB
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
     private func setupViews() {

@@ -8,9 +8,7 @@
 import UIKit
 
 class EditProductViewController: UIViewController {
-    
-#warning("При использовании клавы поднимать вьюху")
-    
+        
     var product: Product?
     var imagePicker: ImagePicker?
     
@@ -58,9 +56,16 @@ class EditProductViewController: UIViewController {
         setupViews()
         setupConstraints()
         
+        self.hideKeyboardWhenTappedAround()
+        
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
         view.addGestureRecognizer(panGesture)
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewDidLayoutSubviews() {
@@ -70,21 +75,23 @@ class EditProductViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @objc func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         
-        // Not allowing the user to drag the view upward
-        guard translation.y >= 0 else { return }
+//        guard translation.y >= 0 else { return }
         
-        // setting x as 0 because we don't want users to move the frame side ways!! Only want straight up or down
         view.frame.origin = CGPoint(x: 0, y: self.pointOrigin!.y + translation.y)
+        view.endEditing(true)
         
         if sender.state == .ended {
             let dragVelocity = sender.velocity(in: view)
             if dragVelocity.y >= 1300 {
                 self.dismiss(animated: true, completion: nil)
             } else {
-                // Set back to original position of the view controller
                 UIView.animate(withDuration: 0.3) {
                     self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
                 }
@@ -151,6 +158,24 @@ extension EditProductViewController: ImagePickerDelegate {
 extension EditProductViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return productNameTextField.resignFirstResponder()
+    }
+}
+
+// MARK: - Keyboard
+
+extension EditProductViewController {
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if self.view.frame.origin.y == pointOrigin?.y {
+            self.view.frame.origin.y -= 300
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        guard let pointOrigin = pointOrigin else { return }
+        if self.view.frame.origin.y != pointOrigin.y {
+            self.view.frame.origin.y = pointOrigin.y
+        }
     }
 }
 

@@ -22,7 +22,7 @@ class HistoryTableViewCell: UITableViewCell {
     private lazy var nameLabel: UILabel = {
        let label = UILabel()
         label.font = .systemFont(ofSize: 16)
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         label.textAlignment = .left
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false

@@ -65,7 +65,9 @@ extension ProductHeaderView {
         
         NSLayoutConstraint.activate([
             productTitleLabel.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 8),
-            productTitleLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+            productTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
+            productTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            productTitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
         ])
     }
 }
