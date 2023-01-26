@@ -59,6 +59,7 @@ extension SearchViewController: UISearchResultsUpdating {
         }
         
         ingredientsVC.ingredients = filteredIngredients
+        ingredientsVC.setValues()
         ingredientsVC.ingredientsTableView.reloadData()
         ingredientsVC.ingredientsTableView.keyboardDismissMode = .onDrag
     }

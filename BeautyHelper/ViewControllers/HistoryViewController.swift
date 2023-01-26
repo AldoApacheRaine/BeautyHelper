@@ -78,7 +78,7 @@ extension HistoryViewController: UITableViewDataSource {
             filterIngredients.append(contentsOf: ingredients.filter { $0.inciName.uppercased() == i.uppercased() })
         }
         
-        let ingredientsVC = IngredientsViewController()
+        let ingredientsVC = ProductViewController()
         ingredientsVC.ingredients = filterIngredients
         ingredientsVC.product = product
         navigationController?.pushViewController(ingredientsVC, animated: true)

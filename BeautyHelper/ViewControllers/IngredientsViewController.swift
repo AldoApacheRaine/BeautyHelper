@@ -1,33 +1,25 @@
 //
-//  ProductIngredientsViewController.swift
+//  IngredientsViewController.swift
 //  BeautyHelper
 //
-//  Created by Максим Хмелев on 28.11.2022.
+//  Created by Максим Хмелев on 26.01.2023.
 //
 
 import UIKit
 
 class IngredientsViewController: UIViewController {
     
-    lazy var ingredientsTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = .clear
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
-    }()
+    lazy var ingredientsTableView = IngredientsTableView()
     
     var ingredients: [Ingredient] = []
-    var product: Product?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Результат анализа"
         setupViews()
         setConstraints()
-        setTableView()
-        setupBarButton()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateHeader), name: NSNotification.Name(rawValue:  "updateViews"), object: nil)
+        setValues()
+        ingredientsTableView.presentVCDelegate = self
     }
     
     private func setupViews() {
@@ -35,85 +27,19 @@ class IngredientsViewController: UIViewController {
         view.addSubview(ingredientsTableView)
     }
     
-    private func setTableView() {
-        ingredientsTableView.delegate = self
-        ingredientsTableView.dataSource = self
-        ingredientsTableView.register(IngredientTableViewCell.self)
-        ingredientsTableView.registerHeader(ProductHeaderView.self)
-    }
-    
-    private func setupBarButton() {
-        let editButton = UIBarButtonItem(image: UIImage(systemName: "pencil.circle"), style: .plain, target: self, action: #selector(editButtonTapped))
-        self.navigationItem.rightBarButtonItem = editButton
-    }
-    
-    @objc private func editButtonTapped(_ sender: UIBarButtonItem) {
-        let editVC = EditProductViewController()
-        editVC.product = product
-        editVC.modalPresentationStyle = .custom
-        editVC.transitioningDelegate = self
-        self.present(editVC, animated: true, completion: nil)
-    }
-    
-    @objc private func updateHeader() {
-        ingredientsTableView.reloadData()
+    func setValues() {
+        ingredientsTableView.ingredients = ingredients
     }
 }
 
-// MARK: - UITableViewDelegate
+// MARK: - PresentVCProtocol
 
-extension IngredientsViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return product != nil ? UITableView.automaticDimension : 0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard product != nil else { return nil }
-        let header = tableView.dequeueReusableHeader(ProductHeaderView.self)
-        header?.configureHeader(product?.name ?? "nil", product?.image)
-        return header
-    }
-}
-
-// MARK: - UITableViewDataSource
-
-extension IngredientsViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        ingredients.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(IngredientTableViewCell.self) {
-            let ingredient = ingredients[indexPath.row]
-            cell.cellConfigure(ingredient.inciName, ingredient.factor)
-            return cell
-        }
-        return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("нажато на ячейку - \(indexPath.row)")
-//        print("Ингредиент - \(ingredients[indexPath.row])")
-//        print("Описание - \(ingredients[indexPath.row].description)")
-//        print("Категории - \(ingredients[indexPath.row].category)")
-        print("Фактор опасности - \(ingredients[indexPath.row].factorValue) \(ingredients[indexPath.row].factor.rawValue)")
-
-
-
+extension IngredientsViewController: PresentVCProtocol {
+    func presentVC(with ingredient: Ingredient) {
         let slideVC = IngredientDetailViewController()
-        slideVC.ingredient = ingredients[indexPath.row]
+        slideVC.ingredient = ingredient
         slideVC.modalPresentationStyle = .automatic
         self.present(slideVC, animated: true, completion: nil)
-    }
-}
-
-// MARK: - UIViewControllerTransitioningDelegate
-
-extension IngredientsViewController: UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        PresentationViewController(presentedViewController: presented, presenting: presenting)
     }
 }
 
