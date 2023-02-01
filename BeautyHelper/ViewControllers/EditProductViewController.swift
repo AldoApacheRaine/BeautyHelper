@@ -39,7 +39,7 @@ class EditProductViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.returnKeyType = .done
         textField.clearButtonMode = .always
-        textField.addShadowOnTextView()
+        textField.addBottomAndTrailingShadow()
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()

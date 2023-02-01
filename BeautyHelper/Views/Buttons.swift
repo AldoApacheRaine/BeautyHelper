@@ -11,7 +11,7 @@ class CustomButton: UIButton {
     convenience init(title: String, target: Any?, action: Selector, type: UIButton.ButtonType = .system) {
         self.init(type: type)
         backgroundColor = .specialButton
-        addShadowOnView()
+        addBottomShadow()
         tintColor = .white
         layer.cornerRadius = 10
         setTitle(title, for: .normal)
@@ -21,11 +21,10 @@ class CustomButton: UIButton {
     }
 }
 #warning("Переделать кнопку")
+
 class EditButton: UIButton {
     convenience init(target: Any?, action: Selector, type: UIButton.ButtonType = .custom) {
         self.init(type: type)
-//        backgroundColor = .clear
-//        tintColor = .clear
         setImage(UIImage(named: "saveIcon"), for: .normal)
         imageView?.contentMode = .scaleAspectFill
         addTarget(target, action: action, for: .touchUpInside)

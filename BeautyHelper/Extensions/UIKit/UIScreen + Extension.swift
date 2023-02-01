@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIScreen {
+    
     func fullScreenSquare() -> CGRect {
         var hw:CGFloat = 0
         var isLandscape = false

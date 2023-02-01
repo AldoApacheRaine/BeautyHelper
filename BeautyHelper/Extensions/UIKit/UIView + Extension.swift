@@ -9,7 +9,7 @@ import UIKit
 
 extension UIView {
     
-    func addShadowOnView() {
+    func addBottomShadow() {
         layer.shadowColor = UIColor.lightGray.cgColor
         layer.masksToBounds = false
         layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
@@ -17,7 +17,7 @@ extension UIView {
         layer.shadowRadius = 1.0
     }
     
-    func addShadowOnTextView() {
+    func addBottomAndTrailingShadow() {
         layer.shadowColor = UIColor.lightGray.cgColor
         layer.masksToBounds = false
         layer.shadowOffset = CGSize(width: 3.0, height: 3.0)

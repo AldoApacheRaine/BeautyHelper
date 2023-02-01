@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIStackView {
+    
     convenience init(arrangedSubviews: [UIView], axis: NSLayoutConstraint.Axis, aligment: Alignment, distribution: Distribution, spacing: CGFloat) {
         self.init(arrangedSubviews: arrangedSubviews)
         self.axis = axis

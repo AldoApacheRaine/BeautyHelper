@@ -16,7 +16,7 @@ class SearchViewController: UIViewController {
        let imageView = UIImageView()
         imageView.image = UIImage(named: "search")
         imageView.contentMode = .scaleAspectFit
-        imageView.addShadowOnTextView()
+        imageView.addBottomAndTrailingShadow()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

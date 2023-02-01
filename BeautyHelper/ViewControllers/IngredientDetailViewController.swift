@@ -39,7 +39,7 @@ class IngredientDetailViewController: UIViewController {
     private lazy var ingredientImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.addShadowOnView()
+        imageView.addBottomShadow()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

@@ -17,45 +17,17 @@ class ScannerViewController: UIViewController {
     var ingredientsDB: [Ingredient] = []
     var productIngredients: [Ingredient] = []
     
-//    private lazy var scrollView: UIScrollView = {
-//        let scroll = UIScrollView()
-//        scroll.contentInsetAdjustmentBehavior = .never
-//        scroll.frame = self.view.bounds
-//        scroll.contentSize = contentSize
-//        return scroll
-//    }()
-//
-//    private lazy var contentView: UIView = {
-//        let contentView = UIView()
-//        contentView.backgroundColor = .clear
-//        contentView.frame.size = contentSize
-//        return contentView
-//    }()
-//
-//    private var contentSize: CGSize {
-//        CGSize(width: view.frame.width, height: view.frame.height + 1)
-//    }
-    
-//    private lazy var logoImageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.image = UIImage(named: "logo")
-//        imageView.contentMode = .scaleAspectFill
-//        imageView.addShadowOnView()
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        return imageView
-//    }()
-    
     private lazy var scanImageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.image = UIImage(named: "scan")
-        imageView.addShadowOnTextView()
+        imageView.addBottomAndTrailingShadow()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private lazy var scanTitleLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = .systemFont(ofSize: 16)
         label.text = "Отсканируй состав с этикетки или используй фото/скрин"
         label.numberOfLines = 0
@@ -65,16 +37,16 @@ class ScannerViewController: UIViewController {
     }()
     
     private lazy var copyImageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.image = UIImage(named: "compound")
         imageView.contentMode = .scaleAspectFit
-        imageView.addShadowOnTextView()
+        imageView.addBottomAndTrailingShadow()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private lazy var copyTitleLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = .systemFont(ofSize: 16)
         label.text = "Скопируй состав и вставь в форму ниже"
         label.textAlignment = .left
@@ -87,48 +59,30 @@ class ScannerViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 7
-        view.addShadowOnTextView()
+        view.addBottomAndTrailingShadow()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private lazy var ingredientsTextView = IngredientsTextView()
-    
-    // Узнать про правильность использования кнопок такого вида!!!
-    
+        
     private lazy var scanButton = CustomButton(title: "Сканировать", target: self, action: #selector(scanButtonTapped))
     
     private lazy var analyzeButton = CustomButton(title: "Анализировать состав", target: self, action: #selector(analyzeButtonTapped))
-    
-    //    private lazy var scanButton: UIButton = {
-    //        let button = UIButton(type: .system)
-    //        button.backgroundColor = .specialButton
-    //        button.tintColor = .white
-    //        button.layer.cornerRadius = 10
-    //        button.setTitle("Сканировать", for: .normal)
-    //        button.titleLabel?.textAlignment = .center
-    ////        button.titleLabel?.font = .robotoBold16()
-    //        button.addTarget(self, action: #selector(scanButtonTapped), for: .touchUpInside)
-    //        button.translatesAutoresizingMaskIntoConstraints = false
-    //        return button
-    //    }()
     
     private lazy var scanInfoStackView = UIStackView()
     private lazy var copyInfoStackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadJson()
-        
-        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
-//        scrollView.delegate = self
-
-        self.hideKeyboardWhenTappedAround()
-        
+        loadData()
+        passDataToVCs()
         setupStackViews()
         setupViews()
         setupNavBar()
         setConstraints()
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        self.hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,24 +95,13 @@ class ScannerViewController: UIViewController {
         productIngredients = []
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        let navSearchController = self.tabBarController?.viewControllers?[1] as? UINavigationController
-        let searchVC = navSearchController?.topViewController as? SearchViewController
-        searchVC?.ingredients = ingredientsDB
-        
-        let navHistoryController = self.tabBarController?.viewControllers?[2] as? UINavigationController
-        let historyVC = navHistoryController?.topViewController as? HistoryViewController
-        historyVC?.ingredients = ingredientsDB
-        
-        NotificationCenter.default.removeObserver(self)
-    }
+        override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            NotificationCenter.default.removeObserver(self)
+        }
     
     private func setupViews() {
         view.backgroundColor = .specialBackground
-//        view.addSubview(scrollView)
-//        scrollView.addSubview(contentView)
-//        contentView.addSubview(logoImageView)
         view.addSubview(scanInfoStackView)
         view.addSubview(copyInfoStackView)
         view.addSubview(viewUnderText)
@@ -179,7 +122,7 @@ class ScannerViewController: UIViewController {
         navBarAppearance.backgroundColor = .SpecialTabBar
         self.navigationController?.navigationBar.standardAppearance = navBarAppearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-    }    
+    }
     
     @objc private func scanButtonTapped(_ sender: UIButton) {
         self.imagePicker?.present(from: sender)
@@ -189,18 +132,33 @@ class ScannerViewController: UIViewController {
         print("Анализирую")
         compareComponents(ingredientsTextView.text.stringToComponents(), ingredientsDB, nil)
     }
-
-    func loadJson() {
-        if let url = Bundle.main.url(forResource: "ingredientDBNew", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode([Ingredient].self, from: data)
-                ingredientsDB = jsonData
-            } catch {
-                print("error:\(error)")
+    
+    private func loadData() {
+        JsonLoadManager.shared.loadData { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let ingredients):
+                self.ingredientsDB = ingredients
+            case .failure(let error):
+                switch error {
+                case .badURL:
+                    self.alertError(title: "Ошибка", message: "Неправильный путь к базе данных")
+                case .invalidData:
+                    self.alertError(title: "Ошибка", message: "Данные некорректны")
+                }
             }
         }
+    }
+    
+    private func passDataToVCs() {
+        let navSearchController = self.tabBarController?.viewControllers?[1] as? UINavigationController
+        let searchVC = navSearchController?.topViewController as? SearchViewController
+        searchVC?.ingredients = ingredientsDB
+
+        let navHistoryController = self.tabBarController?.viewControllers?[2] as? UINavigationController
+        let historyVC = navHistoryController?.topViewController as? HistoryViewController
+        historyVC?.ingredients = ingredientsDB
     }
     
     private func recognizeText(image: UIImage?) {
@@ -216,8 +174,10 @@ class ScannerViewController: UIViewController {
             }).joined(separator: " ")
             
             DispatchQueue.main.async { [weak self] in
-                guard let ingredients = self?.ingredientsDB else { return }
-                self?.compareComponents(text.stringToComponents(), ingredients, image)
+                guard let self = self else { return }
+                
+                let ingredients = self.ingredientsDB
+                self.compareComponents(text.stringToComponents(), ingredients, image)
             }
         }
         do {
@@ -241,7 +201,7 @@ class ScannerViewController: UIViewController {
             ingredientsVC.ingredients = productIngredients
             navigationController?.pushViewController(ingredientsVC, animated: true)
         } else {
-            print("Компоненты не найдены")
+            alertError(title: "Ошибка", message: "Компоненты указаны не в формате \"INCI\" или фото не содержит блока с составом")
         }
     }
     
@@ -257,24 +217,6 @@ class ScannerViewController: UIViewController {
         CoreDataManager.shared.saveContext()
     }
 }
-    
-    
-    
-//    private func compareComponents(_ productComponents: [String], _ ingredientsDB: [Ingredient]) {
-//        for component in productComponents {
-//            let filterdItemsArray = ingredientsDB.filter { item in
-//                item.name.uppercased().contains(component.uppercased())
-//            }
-//            print("Компонент из фото, текста - \(component)")
-//            productIngredients.append(contentsOf: filterdItemsArray)
-////            print("Компоненты из БД - \(productIngredients)")
-//        }
-//        let ingredientsVC = ProductIngredientsViewController()
-//        ingredientsVC.ingredients = productIngredients
-//        navigationController?.pushViewController(ingredientsVC, animated: true)
-//    }
-//}
-
 
 // MARK: - ImagePickerDelegate
 
@@ -290,14 +232,6 @@ extension ScannerViewController: ImagePickerDelegate {
 extension ScannerViewController {
     
     private func setConstraints() {
-        
-//        NSLayoutConstraint.activate([
-//            logoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            logoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-//            logoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-//            logoImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3)
-//        ])
-        
         NSLayoutConstraint.activate([
             scanInfoStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             scanInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
@@ -362,21 +296,4 @@ extension ScannerViewController {
         }
     }
 }
-
-// MARK: - UIScrollViewDelegate
-//
-//extension ScannerViewController: UIScrollViewDelegate {
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let offset = scrollView.contentOffset
-//
-//        if offset.y < 0.0 {
-//            var transform = CATransform3DTranslate(CATransform3DIdentity, 0, offset.y, 0)
-//            let scaleFactor = 1 + (-1 * offset.y / (logoImageView.frame.height / 2))
-//            transform = CATransform3DScale(transform, scaleFactor, scaleFactor, 1)
-//            logoImageView.layer.transform = transform
-//        } else {
-//            logoImageView.layer.transform = CATransform3DIdentity
-//        }
-//    }
-//}
 
