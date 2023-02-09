@@ -193,10 +193,24 @@ class ScannerViewController: UIViewController {
             let filterdItemsArray = ingredientsDB.filter { $0.inciName.uppercased() == component.uppercased() }
             print("Компонент из фото, текста - \(component)")
             productIngredients.append(contentsOf: filterdItemsArray)
+            
+            for ingredient in ingredientsDB {
+                for synonim in ingredient.synonym {
+                    if component == synonim {
+                        if !productIngredients.contains(where: {$0.inciName == ingredient.inciName}) {
+                            print("Синоним из фото, текста - \(ingredient.inciName) \(synonim)")
+                            productIngredients.append(ingredient)
+                        }
+                    }
+                }
+            }
         }
+        
+        #warning("Возможно нужно сделать удаление повторяющихся компонентов")
+
         if !productIngredients.isEmpty {
             saveProduct("Продукт", productIngredients.map { $0.inciName }, productImage)
-            
+
             let ingredientsVC = IngredientsViewController()
             ingredientsVC.ingredients = productIngredients
             navigationController?.pushViewController(ingredientsVC, animated: true)
